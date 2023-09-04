@@ -1,0 +1,37 @@
+html,
+body {
+  font-family: "Amazon Ember";
+  width: 100%;
+  height: 100%;
+  margin: 0px;
+  padding: 0px;
+  overflow-x: hidden;
+  background-color: rgb(243, 235, 223);
+  background-image: url("https://as1.ftcdn.net/v2/jpg/04/08/51/78/1000_F_408517872_u7m4me8l83eenmUcsJ1ArSZymm5Unz4X.jpg");
+  background-image: linear-gradient(
+      0deg,
+      rgba(250, 250, 250, 0.801),
+      rgba(250, 250, 250, 0.836)
+    ),
+    url("../public/Images/template.jpeg");
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+/* Scroll Bar */
+
+::-webkit-scrollbar-track {
+  background-color: #f5f5f5;
+}
+
+::-webkit-scrollbar {
+  width: 8px;
+  background-color: #f5f5f5;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: rgba(66, 66, 66, 0.2);
+  border: 0px;
+  background-clip: padding-box;
+  border-radius: 5px;
+}
