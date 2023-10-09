@@ -19,6 +19,12 @@
   background-color: white;
   margin-right: 0px;
   box-shadow: 2px 2px 10px;
+  position: relative;
+  top: 0;
+  transition: 0.5s;
+}
+.res_list:hover {
+  top: 10px;
 }
 
 .card-body {
