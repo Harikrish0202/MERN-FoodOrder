@@ -1,13 +1,41 @@
-import React from "react";
+import React, { useState } from "react";
 import { Form, useNavigate } from "react-router-dom";
+import axios from "axios";
 import "./SignupDetails.css";
 
 const SignupDetails = () => {
   const navigate = useNavigate();
-  const submitHandler = (event) => {
+  const [userData, setUserData] = useState({
+    name: "",
+    email: "",
+    password: "",
+    passwordConfirm: "",
+    phoneNumber: "",
+  });
+  const submitHandler = async (event) => {
     event.preventDefault();
-
-    navigate("..");
+    try {
+      const response = await axios.post("/api/v1/eats/users/signup", userData);
+      if (response.status === 201) {
+        // User creation successful
+        console.log("User created successfully");
+        // Optionally,here we reset the form
+        setUserData({
+          name: "",
+          email: "",
+          password: "",
+          passwordConfirm: "",
+          phoneNumber: "",
+        });
+      } else {
+        // Handle other response status codes
+        console.error("User creation failed");
+      }
+    } catch (error) {
+      // Handle network errors or other exceptions
+      console.error("Error:", error);
+    }
+    navigate("/users/login");
   };
   return (
     <main className="signup_form_container">
@@ -24,6 +52,9 @@ const SignupDetails = () => {
               name="name"
               className="signup_name_input"
               required
+              onChange={(e) =>
+                setUserData({ ...userData, name: e.target.value })
+              }
             />
           </div>
           <div className="signup_email">
@@ -36,6 +67,9 @@ const SignupDetails = () => {
               name="signup_email"
               className="signup_email_input"
               required
+              onChange={(e) =>
+                setUserData({ ...userData, email: e.target.value })
+              }
             />
           </div>
           <div className="signup_password">
@@ -48,6 +82,9 @@ const SignupDetails = () => {
               name="signup_password"
               className="signup_password_input"
               required
+              onChange={(e) =>
+                setUserData({ ...userData, password: e.target.value })
+              }
             />
           </div>
           <div className="signup_confirm">
@@ -60,6 +97,9 @@ const SignupDetails = () => {
               name="signup_confirm"
               className="signup_confirm_input"
               required
+              onChange={(e) =>
+                setUserData({ ...userData, passwordConfirm: e.target.value })
+              }
             />
           </div>
           <div className="signup_number">
@@ -72,6 +112,9 @@ const SignupDetails = () => {
               name="number"
               className="signup_number_input"
               required
+              onChange={(e) =>
+                setUserData({ ...userData, phoneNumber: e.target.value })
+              }
             />
           </div>
           <br></br>

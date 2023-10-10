@@ -79,5 +79,3 @@ exports.deleteFood = async (req, res, next) => {
     });
   }
 };
-
-
