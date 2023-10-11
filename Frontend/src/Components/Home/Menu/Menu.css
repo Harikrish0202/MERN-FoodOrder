@@ -25,12 +25,12 @@
   margin-right: 0px;
   box-shadow: 2px 2px 10px;
   position: relative;
-  top: 0;
+  bottom: 0;
   transition: 0.5s;
 }
 
 .menu_list:hover {
-  top: 10px;
+  bottom: 10px;
 }
 
 .menu_img {
