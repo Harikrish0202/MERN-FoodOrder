@@ -1,0 +1,44 @@
+.carousel_container {
+  width: 100%;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+}
+
+.template_name {
+  padding: 5px 10px;
+  font-size: 15px;
+  color: black;
+}
+.food-item {
+  width: 40%;
+  border-radius: 50%;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: center;
+}
+
+.template_img {
+  padding-top: 20px;
+  width: 40%;
+  object-fit: cover;
+  border-radius: 50%;
+}
+
+.template_img:hover {
+  transition: 0.3s;
+  width: 50%;
+  cursor: pointer;
+}
+.template {
+  background-color: rgba(255, 255, 255, 0.932);
+  width: 130%;
+  height: 10%;
+  margin-left: -150px;
+  margin-top: 2%;
+}
+.template_heading {
+  padding: 1% 5%;
+}
