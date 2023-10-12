@@ -7,13 +7,13 @@ body {
   padding: 0px;
   overflow-x: hidden;
   background-color: rgb(243, 235, 223);
-  background-image: url("https://as1.ftcdn.net/v2/jpg/04/08/51/78/1000_F_408517872_u7m4me8l83eenmUcsJ1ArSZymm5Unz4X.jpg");
+  background-image: url("https://img.freepik.com/free-photo/delicious-ravioli-pasta-plate-with-fork-copy-space_23-2148425613.jpg?size=626&ext=jpg&ga=GA1.2.346178294.1697006416&semt=ais");
   background-image: linear-gradient(
-      0deg,
+      /* 0deg,
       rgba(250, 250, 250, 0.801),
-      rgba(250, 250, 250, 0.836)
+      rgba(250, 250, 250, 0.836) */
     ),
-    url("../public/Images/template.jpeg");
+    url("https://img.freepik.com/free-photo/delicious-ravioli-pasta-plate-with-fork-copy-space_23-2148425613.jpg?size=626&ext=jpg&ga=GA1.2.346178294.1697006416&semt=ais");
   background-repeat: no-repeat;
   background-size: cover;
 }

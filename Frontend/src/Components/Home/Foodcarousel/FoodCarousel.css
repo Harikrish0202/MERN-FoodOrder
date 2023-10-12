@@ -8,7 +8,7 @@
 .template_name {
   padding: 5px 10px;
   font-size: 15px;
-  color: black;
+  color: white;
 }
 .food-item {
   width: 40%;
@@ -41,4 +41,5 @@
 }
 .template_heading {
   padding: 1% 5%;
+  color: white;
 }

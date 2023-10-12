@@ -48,7 +48,7 @@ function FoodCarousel() {
           <p className="template_name">Burger</p>
         </div>
       </div>
-      <hr></hr>
+      <hr style={{ color: "white" }}></hr>
     </>
   );
 }

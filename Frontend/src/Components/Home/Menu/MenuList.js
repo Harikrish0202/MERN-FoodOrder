@@ -30,7 +30,9 @@ const MenuList = ({ menu }) => {
         />
         <div className="card-body d-flex flex-column ">
           <h6 className="card-title">{menu.foodname}</h6>
-          <p className="card-text menu_descripton">{menu.description}</p>
+          <p className="card-text menu-text menu_descripton">
+            {menu.description}
+          </p>
           <h6 className="card-title menu_price">&#8377;{menu.price}</h6>
           <div className="button_container">
             {appear && (

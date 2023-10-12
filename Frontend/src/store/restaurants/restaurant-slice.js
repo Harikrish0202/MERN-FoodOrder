@@ -6,12 +6,11 @@ const restaurantSlice = createSlice({
   reducers: {
     getRestaurant(state, action) {
       state.restaurant = action.payload.restaurant;
-      // console.log(state.restaurant);
     },
-    specifyRestaurant(state, action) {
-      state.restaurant = action.payload.restaurant;
-      console.log(state.restaurant);
-    },
+    // specifyRestaurant(state, action) {
+    //   state.restaurant = action.payload.restaurant;
+    //   console.log(state.restaurant);
+    // },
   },
 });
 

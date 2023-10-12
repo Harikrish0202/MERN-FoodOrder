@@ -16,15 +16,16 @@
   height: 100%;
   border-radius: 5px;
   outline: none;
-  background-color: white;
+  background-color: rgb(65, 60, 60, 0.5);
+  color: white;
   margin-right: 0px;
   box-shadow: 2px 2px 10px;
   position: relative;
-  top: 0;
+  bottom: 0;
   transition: 0.5s;
 }
 .res_list:hover {
-  top: 10px;
+  bottom: 10px;
 }
 
 .card-body {
@@ -37,8 +38,13 @@
   height: 180px;
 }
 
+
 .card-text {
   color: gray;
+}
+.res-text {
+  color: white;
+
   font-size: 13px;
   text-align: justify;
 }
@@ -48,6 +54,7 @@
 }
 .res_count {
   margin-left: 6%;
+  color: white;
 }
 
 #no_of_reviews {

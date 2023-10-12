@@ -4,7 +4,7 @@ import Restaraunts from "../Components/Home/Restaurants/Restaurants";
 import { useDispatch, useSelector } from "react-redux";
 import {
   restaurantsData,
-  specifyresData,
+  // specifyresData,
 } from "../store/restaurants/restaurant-action";
 import { useParams } from "react-router-dom";
 
@@ -16,11 +16,11 @@ const HomePage = () => {
 
   useEffect(() => {
     if (resname) {
-      dispatch(specifyresData(resname));
+      // dispatch(specifyresData(resname));
     } else {
       dispatch(restaurantsData());
     }
-  }, [dispatch]);
+  }, [dispatch, resname]);
 
   return (
     <>
