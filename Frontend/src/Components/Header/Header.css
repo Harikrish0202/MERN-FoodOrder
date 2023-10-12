@@ -1,0 +1,137 @@
+/* Header */
+
+.navbar {
+  background-color: #be521f;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  padding: 10px;
+  height: 70px;
+}
+
+.container-fluid {
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  width: 95%;
+}
+.logo_width {
+  flex-grow: 1;
+  /* width: 20%; */
+}
+
+.logo {
+  width: 90px;
+  text-align: center;
+}
+
+.search_input:focus {
+  border: 0px;
+  border-color: white;
+}
+
+.search_form {
+  /* width: 30%; */
+  flex-grow: 3;
+  padding: 8px;
+  border-radius: 10px;
+  border: none;
+  outline: none;
+}
+
+.search_input {
+  width: 90%;
+  padding: 8px 10px;
+  border-radius: 10px;
+  font-size: 15px;
+}
+
+.search_icon {
+  margin: 0px;
+  border: none;
+  border-color: white;
+  background-color: white;
+  position: relative;
+  left: -35px;
+}
+.search_icon:focus {
+  outline: none;
+}
+
+.navbar-collapse {
+  flex-grow: 1;
+  justify-content: flex-end;
+}
+
+.cart-and-login {
+  /* display: flex; */
+  justify-content: center;
+
+  /* flex-grow: 5; */
+}
+
+.cart {
+  width: 120px;
+  /* flex-grow: 1; */
+  margin: 5px;
+  text-align: center;
+  padding: 5px;
+  font-size: 20px;
+}
+
+.active {
+  padding: 5px 10px;
+}
+
+.dropdown {
+  padding: 5px 10px;
+}
+.cart:hover {
+  background-color: white;
+  border-radius: 10px;
+  transition: 0.2s;
+  color: black;
+}
+
+.cartname {
+  color: white;
+  font-size: 20px;
+  padding: 5px;
+}
+
+.cart:hover .cartname {
+  color: black;
+}
+.cart:hover .cartnumber {
+  background-color: black;
+  color: white;
+}
+
+.cartnumber {
+  background-color: white;
+  color: black;
+  padding: 0px;
+  width: 25px;
+  border-radius: 30%;
+  font-size: 18px;
+}
+
+.nav_login {
+  width: 120px;
+  margin: 5px;
+  background-color: #be521f;
+  text-align: center;
+  padding: 5px;
+  font-size: 20px;
+  border: white;
+  border-radius: 10px;
+}
+.nav_login:hover span {
+  color: black;
+  transition: 0.2s;
+}
+
+.nav_login:hover {
+  background-color: white;
+  transition: 0.2s;
+}
