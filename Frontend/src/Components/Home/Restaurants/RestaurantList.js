@@ -5,7 +5,7 @@ import Rating from "react-rating-stars-component";
 function RestaurantList({ resList }) {
   return (
     <div className="card  res_list">
-      <Link to="/eats/stores/:id/menus">
+      <Link to={`/eats/stores/${resList._id}/menus`}>
         <img
           src={resList.images[0].url}
           id={resList.images[0]._id}
@@ -16,7 +16,7 @@ function RestaurantList({ resList }) {
       <div className="card-body d-flex flex-column ">
         <h5 className="card-title">{resList.name}</h5>
         {/* <hr></hr> */}
-        <p className="card-text">{resList.address}</p>
+        <p className="card-text res-text">{resList.address}</p>
         <div className="mt-auto">
           <Rating
             className="rating"
