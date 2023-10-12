@@ -1,4 +1,5 @@
 const mongoose = require("mongoose");
+const bcrypt = require("bcrypt");
 const validator = require("validator");
 
 const userSchema = new mongoose.Schema(
@@ -23,7 +24,7 @@ const userSchema = new mongoose.Schema(
     },
     passwordConfirm: {
       type: String,
-      required: [true, "Please consfirm your password"],
+      required: [true, "Please confirm your password"],
       validate: function (el) {
         return el === this.password;
       },
@@ -32,11 +33,11 @@ const userSchema = new mongoose.Schema(
     avatar: {
       public_id: {
         type: String,
-        required: true,
+        // required: true,
       },
       url: {
         type: String,
-        required: true,
+        // required: true,
       },
     },
 
@@ -48,6 +49,7 @@ const userSchema = new mongoose.Schema(
     phoneNumber: {
       type: String,
       required: true,
+      unique: true,
     },
     passwordChangedAt: Date,
     active: {
@@ -86,11 +88,12 @@ userSchema.pre("save", function (next) {
   next();
 });
 
+// this function for comparing given password and stored pasword in database are same.
 userSchema.methods.correctPassword = async function (
   candidatePassword,
   userPassword
 ) {
-  return await bcrypt.compare(candidatePassword, userPassword);
+  return await bcrypt.compare(candidatePassword, userPassword); // It returns true or false.
 };
 
 userSchema.methods.changedPasswordAfter = function (JWTTimestamp) {

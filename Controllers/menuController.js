@@ -12,10 +12,10 @@ exports.getAllMenu = async (req, res, next) => {
   }
 };
 
-exports.oneMenu = async (req, res, next) => {
+exports.getMenu = async (req, res, next) => {
   try {
-    const menu = await Menu.findById(req.params.foodId);
-
+    const menu = await Menu.findOne({ restaurant: req.params.id });
+    console.log(menu);
     if (!menu) throw new Error("No Menu Found");
 
     res.status(200).json({
@@ -67,3 +67,13 @@ exports.deleteMenu = async (req, res, next) => {
     });
   }
 };
+
+// exports.populateMenu = async (req, res, next) => {
+//   try {
+//     console.log("Aggregation here!");
+//     // const result = await Menu.aggregate([]);
+//     // return result;
+//   } catch (error) {
+//     console.log(error.message);
+//   }
+// };

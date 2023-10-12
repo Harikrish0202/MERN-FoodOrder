@@ -1,8 +1,8 @@
 const express = require("express");
-const Router = express.Router();
+const Router = express.Router({ mergeParams: true });
 
 const menuController = require("./../Controllers/menuController");
 
-Router.get("/", menuController.getAllMenu);
+Router.route("/:id/menus").get(menuController.getMenu);
 
 module.exports = Router;

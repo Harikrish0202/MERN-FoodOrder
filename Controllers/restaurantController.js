@@ -3,6 +3,11 @@ const Restaurant = require("../Models/restaurantModel");
 exports.getAllRestaurant = async (req, res, next) => {
   try {
     const restaurants = await Restaurant.find();
+    // res.status(200).json({
+    //   data: restaurants,
+    // });
+
+    // res.set("Content-Type", "application/json");
     res.status(200).json({
       data: restaurants,
     });
@@ -11,9 +16,28 @@ exports.getAllRestaurant = async (req, res, next) => {
   }
 };
 
-exports.oneRestaurant = async (req, res, next) => {
+exports.getByRestaurantId = async (req, res, next) => {
   try {
-    const restaurant = await Restaurant.findById(req.params.foodId);
+    const restaurant = await Restaurant.findById(req.params.restaurantId);
+
+    if (!restaurant) throw new Error("No restaurant found");
+
+    res.status(200).json({
+      success: true,
+      data: restaurant,
+    });
+  } catch (err) {
+    res.status(404).json({
+      data: err.message,
+    });
+  }
+};
+
+exports.getByRestaurantName = async (req, res, next) => {
+  try {
+    const restaurantName = req.params.storeName;
+
+    const restaurant = await Restaurant.findOne({ name: restaurantName });
 
     if (!restaurant) throw new Error("No restaurant found");
 
