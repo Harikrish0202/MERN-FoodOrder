@@ -17,9 +17,9 @@ app.use(
     // credentials: true, // Include credentials (cookies, HTTP authentication) in the request
   })
 );
-app.use(express.json()); // Body parser, reading data from body into req.body
+app.use(express.json());
 app.use(bodyParser.urlencoded({ extended: true }));
-app.use(cookieParser()); // Cookie parser, parses data from cookies.
+app.use(cookieParser());
 
 // app.use((req, res, next) => {
 //   if (req.get("Content-Type") === "application/json") {
@@ -32,7 +32,7 @@ app.use(cookieParser()); // Cookie parser, parses data from cookies.
 // });
 app.use("/api/v1/eats", foodRoutes);
 app.use("/api/v1/eats/stores", restaurantRoutes);
-app.use("/api/v1/eats/stores", menuRoutes);
+app.use("/api/v1/eats/menus", menuRoutes);
 app.use("/api/v1/eats/orders", orderRoutes);
 app.use("/api/v1/eats/users", userRoutes);
 

@@ -12,9 +12,9 @@ exports.getAllMenu = async (req, res, next) => {
   }
 };
 
-exports.getMenu = async (req, res, next) => {
+exports.oneMenu = async (req, res, next) => {
   try {
-    const menu = await Menu.findOne({ restaurant: req.params.id });
+    const menu = await Menu.find(req.params.restaurantId);
     console.log(menu);
     if (!menu) throw new Error("No Menu Found");
 
