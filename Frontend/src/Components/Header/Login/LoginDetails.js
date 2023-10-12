@@ -1,12 +1,33 @@
-import React from "react";
+import React, { useState } from "react";
 import { Form, Link, useNavigate } from "react-router-dom";
 import "./LoginDetails.css";
+import axios from "axios";
 
 const LoginDetails = () => {
-  const navigate = useNavigate();
-  const submitHandler = (event) => {
+  // const navigate = useNavigate();
+  const [userData, setUserData] = useState({
+    email: "",
+    password: "",
+  });
+
+  const submitHandler = async (event) => {
     event.preventDefault();
-    navigate("..");
+    try {
+      const response = await axios.post("/api/v1/eats/users/login", userData);
+      console.log(response);
+      if (response.status === 200) {
+        console.log("user logged in successfully!");
+        setUserData({
+          email: "",
+          password: "",
+        });
+      } else {
+        console.log("user logged in failed!");
+      }
+    } catch (error) {
+      console.log("error:", error);
+    }
+    // navigate("..");
   };
   return (
     <main className="form_container">
@@ -18,7 +39,15 @@ const LoginDetails = () => {
               Email
             </label>
             <br></br>
-            <input type="email" name="email" className="email_input" required />
+            <input
+              type="email"
+              name="email"
+              className="email_input"
+              required
+              onChange={(e) => {
+                setUserData({ ...userData, email: e.target.value });
+              }}
+            />
           </div>
           <div className="password">
             <label htmlFor="password" className="password_label">
@@ -30,6 +59,9 @@ const LoginDetails = () => {
               name="password"
               className="password_input"
               required
+              onChange={(e) => {
+                setUserData({ ...userData, password: e.target.value });
+              }}
             />
           </div>
           <Link to="/" className="forgot_password">

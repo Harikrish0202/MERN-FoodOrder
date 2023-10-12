@@ -3,6 +3,6 @@ const Router = express.Router({ mergeParams: true });
 
 const menuController = require("./../Controllers/menuController");
 
-Router.route("/").get(menuController.getAllMenu);
+Router.route("/:id/menus").get(menuController.getMenu);
 
 module.exports = Router;

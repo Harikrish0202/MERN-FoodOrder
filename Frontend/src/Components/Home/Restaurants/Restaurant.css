@@ -38,8 +38,13 @@
   height: 180px;
 }
 
+
+.card-text {
+  color: gray;
+}
 .res-text {
   color: white;
+
   font-size: 13px;
   text-align: justify;
 }
