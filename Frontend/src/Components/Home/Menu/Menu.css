@@ -86,7 +86,16 @@
   color: green;
 }
 
-.adding_btn,
+.adding_btn{
+  padding: 5px;
+  margin-left: 5px;
+  border-radius: 5px;
+  background-color:rgb(65, 220, 76);
+  
+}
 .removing_btn {
-  padding: 0px;
+  padding: 5px;
+  margin-right: 5px;
+  border-radius: 5px;
+  background-color: rgb(237, 64, 64);
 }

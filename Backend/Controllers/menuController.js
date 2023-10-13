@@ -14,8 +14,11 @@ exports.getAllMenu = async (req, res, next) => {
 
 exports.getMenu = async (req, res, next) => {
   try {
-    const menu = await Menu.findOne({ restaurant: req.params.id });
-    console.log(menu);
+    const menu = await Menu.findOne({ restaurant: req.params.id }).populate(
+      "menu.items"
+    );
+    // const menu = await Menu.findOne({ restaurant: req.params.id });
+
     if (!menu) throw new Error("No Menu Found");
 
     res.status(200).json({

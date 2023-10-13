@@ -4,7 +4,7 @@ import "./LoginDetails.css";
 import axios from "axios";
 
 const LoginDetails = () => {
-  // const navigate = useNavigate();
+  const navigate = useNavigate();
   const [userData, setUserData] = useState({
     email: "",
     password: "",
@@ -27,7 +27,7 @@ const LoginDetails = () => {
     } catch (error) {
       console.log("error:", error);
     }
-    // navigate("..");
+    navigate("/");
   };
   return (
     <main className="form_container">

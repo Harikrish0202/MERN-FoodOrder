@@ -6,6 +6,7 @@ const dotenv = require("dotenv").config({
 });
 const User = require("../Models/userModel");
 
+// FOR USER SIGNUP.
 exports.signup = async (req, res, next) => {
   const newUser = await User.create({
     name: req.body.name,
@@ -44,6 +45,7 @@ exports.signup = async (req, res, next) => {
   });
 };
 
+//FOR USER SIGNIN.
 exports.login = async (req, res, next) => {
   const { email, password } = req.body;
 
@@ -82,6 +84,47 @@ exports.login = async (req, res, next) => {
   });
 };
 
+// FOR USER LOGIN
+// Only for rendering pages.(checking if user is logged in or not).
+exports.isLoggedIn = async (req, res, next) => {
+  if (req.cookies.jwt) {
+    try {
+      // 1) verify token
+      const decoded = await promisify(jwt.verify)(
+        req.cookies.jwt,
+        process.env.JWT_SECRET
+      );
+      // 2) Check if user still exists
+      const currentUser = await User.findById(decoded.id);
+      if (!currentUser) {
+        return next();
+      }
+
+      // 3)Check if user changed password after the token was issued
+      if (currentUser.changesPasswordAfter(decoded.iat)) {
+        return next();
+      }
+
+      // Grand Access.
+      req.user = currentUser;
+      return next();
+    } catch (error) {
+      return next();
+    }
+  }
+  next();
+};
+
+//FOR USER LOGOUT
+exports.logOut = async (req, res, next) => {
+  res.cookie("jwt", "loggedout", {
+    expires: new Date(Date.now() + 10 * 1000), // 10 seconds from now.
+    httpOnly: true,
+  });
+  res.status(200).json({ status: "success" });
+};
+
+/////
 exports.protect = async (req, res, next) => {
   // 1) Getting token and check of its there
   let token;
@@ -124,31 +167,5 @@ exports.protect = async (req, res, next) => {
   }
 
   // Grand Access.
-  next();
-};
-
-// Only for rendering pages.(checking if user is logged in or not).
-exports.isLoggedIn = async (req, res, next) => {
-  if (req.cookies.jwt) {
-    // 1) verify token
-    const decoded = await promisify(jwt.verify)(
-      req.cookies.jwt,
-      process.env.JWT_SECRET
-    );
-    // 2) Check if user still exists
-    const currentUser = await User.findById(decoded.id);
-    if (!currentUser) {
-      return next();
-    }
-
-    // 3)Check if user changed password after the token was issued
-    if (currentUser.changesPasswordAfter(decoded.iat)) {
-      return next();
-    }
-
-    // Grand Access.
-    req.user = currentUser;
-    return next();
-  }
   next();
 };
