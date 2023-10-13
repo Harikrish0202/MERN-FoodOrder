@@ -12,7 +12,7 @@ const HomePage = () => {
   const dispatch = useDispatch();
   const { resname } = useParams();
   // console.log(resname);
-  const data = useSelector((state) => state.restaurantData);
+  const { restaurant, loading } = useSelector((state) => state.restaurantData);
 
   useEffect(() => {
     if (resname) {
@@ -25,8 +25,13 @@ const HomePage = () => {
   return (
     <>
       <FoodCarousel />
-      {data.restaurant.length > 0 && (
-        <Restaraunts restaurants={data.restaurant} />
+      {loading && (
+        <p style={{ color: "white ", textAlign: "center", fontSize: "20px" }}>
+          Loading Restaurant.....
+        </p>
+      )}
+      {restaurant.length > 0 && !loading && (
+        <Restaraunts restaurants={restaurant} />
       )}
     </>
   );
