@@ -2,15 +2,15 @@ import { createSlice } from "@reduxjs/toolkit";
 
 const restaurantSlice = createSlice({
   name: "restaurantData",
-  initialState: { restaurant: [] },
+  initialState: { restaurant: [], loading: false },
   reducers: {
+    getrequest(state) {
+      state.loading = true;
+    },
     getRestaurant(state, action) {
       state.restaurant = action.payload.restaurant;
+      state.loading = false;
     },
-    // specifyRestaurant(state, action) {
-    //   state.restaurant = action.payload.restaurant;
-    //   console.log(state.restaurant);
-    // },
   },
 });
 

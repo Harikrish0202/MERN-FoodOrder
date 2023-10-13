@@ -6,7 +6,7 @@ const app = require("./app");
 
 mongoose
   .connect(
-    "mongodb+srv://arumugaselvam23052003:wEPSMqGtoBsq6UYI@cluster0.a393mkw.mongodb.net/?retryWrites=true&w=majority"
+    "mongodb+srv://harikrishnan08902:Harikrishnan0202@cluster0.phjgvfc.mongodb.net/?retryWrites=true&w=majority"
   )
   .then((con) => {
     console.log(

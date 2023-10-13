@@ -15,10 +15,10 @@ const router = createBrowserRouter(
   createRoutesFromElements(
     <Route path="*" element={<Mainpage />} errorElement={<Error />}>
       <Route index element={<HomePage />} />
-      <Route path="eats/stores/search/:resname" element={<HomePage />} />
-      <Route path="eats/stores/:id/menus" element={<MenuPage />} />
-      <Route path="users/login" element={<LoginPage />} />
-      <Route path="users/signup" element={<SignupPage />} />
+      <Route path="eats/stores/search/:resname" element={<HomePage />} exact />
+      <Route path="eats/stores/:id/menus" element={<MenuPage />} exact />
+      <Route path="users/login" element={<LoginPage />} exact />
+      <Route path="users/signup" element={<SignupPage />} exact />
     </Route>
   )
 );
