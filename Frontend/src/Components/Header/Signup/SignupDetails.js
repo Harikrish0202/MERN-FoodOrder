@@ -1,10 +1,16 @@
 import React, { useState } from "react";
 import { Form, useNavigate } from "react-router-dom";
-import axios from "axios";
+
 import "./SignupDetails.css";
+import { useDispatch, useSelector } from "react-redux";
+import { signUp } from "../../../store/user/user-action";
+import { toast } from "react-toastify";
 
 const SignupDetails = () => {
+  const { error } = useSelector((state) => state.users);
   const navigate = useNavigate();
+  const dispatch = useDispatch();
+
   const [userData, setUserData] = useState({
     name: "",
     email: "",
@@ -12,31 +18,23 @@ const SignupDetails = () => {
     passwordConfirm: "",
     phoneNumber: "",
   });
-  const submitHandler = async (event) => {
+
+  const submitHandler = (event) => {
     event.preventDefault();
-    try {
-      const response = await axios.post("/api/v1/eats/users/signup", userData);
-      if (response.status === 201) {
-        // User creation successful
-        console.log("User created successfully");
-        // Optionally,here we reset the form
-        setUserData({
-          name: "",
-          email: "",
-          password: "",
-          passwordConfirm: "",
-          phoneNumber: "",
-        });
-      } else {
-        // Handle other response status codes
-        console.error("User creation failed");
-      }
-    } catch (error) {
-      // Handle network errors or other exceptions
-      console.error("Error:", error);
+    //here i am sending user information to signUpfunction
+    dispatch(signUp(userData));
+    if (error) {
+      return toast.error("User Signup Failed");
+    } else {
+      //Sending the pop up message
+      toast.success(" User Signup Successfully!");
+      //it will get redirect to home page
+      setTimeout(() => {
+        navigate("/");
+      }, 3000);
     }
-    navigate("/users/login");
   };
+
   return (
     <main className="signup_form_container">
       <Form className="signup_form" onSubmit={submitHandler}>

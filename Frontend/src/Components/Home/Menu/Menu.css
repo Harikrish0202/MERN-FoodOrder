@@ -83,19 +83,22 @@
 
 .green {
   padding: 5px;
-  color: green;
+  color: rgb(65, 220, 76);
 }
 
-.adding_btn{
+.menu_status {
+  color: white;
+}
+
+.adding_btn {
   padding: 5px;
   margin-left: 5px;
   border-radius: 5px;
-  background-color:rgb(65, 220, 76);
-  
+  background-color: rgb(65, 220, 76);
 }
 .removing_btn {
   padding: 5px;
   margin-right: 5px;
   border-radius: 5px;
-  background-color: rgb(237, 64, 64);
+  background-color: #be521f;
 }

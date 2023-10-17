@@ -4,6 +4,7 @@ import Cart from "./Cart/Cart.js";
 import { Link, Route, Routes } from "react-router-dom";
 import Login from "./Login/Login";
 import "./Header.css";
+//Navbar Component
 function Navbar() {
   return (
     <div className="navbar sticky-top navbar-expand-md ">
@@ -32,9 +33,7 @@ function Navbar() {
             <li className="nav-item active">
               <Cart />
             </li>
-            <li className="nav-item dropdown">
-              <Login />
-            </li>
+            <Login />
           </ul>
         </div>
       </div>

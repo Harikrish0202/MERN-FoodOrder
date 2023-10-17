@@ -2,6 +2,7 @@ import React from "react";
 import { useRouteError } from "react-router-dom";
 import Navbar from "../Components/Header/Navbar";
 
+//Error Component
 function Error() {
   const error = useRouteError();
   return (

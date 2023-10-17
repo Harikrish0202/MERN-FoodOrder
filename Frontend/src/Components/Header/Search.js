@@ -1,26 +1,27 @@
 import React, { useState } from "react";
 import "./Header.css";
-import { useNavigate } from "react-router-dom";
+// import { useNavigate } from "react-router-dom";
 
+//Serach Component
 function Search() {
   const [searchValue, setsearchValue] = useState("");
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
 
-  const submitHandler = (event) => {
-    event.preventDefault();
-    if (searchValue) {
-      navigate(`eats/stores/search/${searchValue}`);
-    } else {
-      navigate("/");
-    }
-    setsearchValue("");
-  };
+  // const submitHandler = (event) => {
+  //   event.preventDefault();
+  //   if (searchValue) {
+  //     navigate(`eats/stores/search/${searchValue}`);
+  //   } else {
+  //     navigate("/");
+  //   }
+  //   setsearchValue("");
+  // };
 
   const iconDisappear = (event) => {
     setsearchValue(event.target.value);
   };
   return (
-    <form className="d-flex search_form" role="search" onSubmit={submitHandler}>
+    <form className="d-flex search_form" role="search">
       <input
         className="form-control  search_input "
         type="search"

@@ -4,6 +4,7 @@ import "./LoginDetails.css";
 import axios from "axios";
 
 const LoginDetails = () => {
+  //useNavigate is used to redirect the page
   const navigate = useNavigate();
   const [userData, setUserData] = useState({
     email: "",
@@ -27,6 +28,7 @@ const LoginDetails = () => {
     } catch (error) {
       console.log("error:", error);
     }
+    //once the submission gets succesfully after that this page will goes to home page automatically
     navigate("/");
   };
   return (

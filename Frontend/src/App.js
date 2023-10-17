@@ -4,6 +4,7 @@ import {
   Route,
   RouterProvider,
 } from "react-router-dom";
+
 import Mainpage from "./Pages/Mainpage";
 import LoginPage from "./Pages/LoginPage";
 import HomePage from "./Pages/HomePage";
@@ -12,6 +13,8 @@ import ForgotPasswordPage from "./Pages/ForgotPasswordPage";
 import PaymentPage from "./Pages/PaymentPage";
 import Error from "./Pages/Error";
 import MenuPage from "./Pages/MenuPage";
+import { Flip, ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -32,7 +35,17 @@ const router = createBrowserRouter(
 );
 
 const App = () => {
-  return <RouterProvider router={router} />;
+  return (
+    <>
+      <ToastContainer
+        position="bottom-center"
+        autoClose={3000}
+        draggable={true}
+        transition={Flip}
+      />
+      <RouterProvider router={router} />
+    </>
+  );
 };
 
 export default App;

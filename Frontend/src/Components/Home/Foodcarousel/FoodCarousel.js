@@ -1,5 +1,7 @@
 import React from "react";
 import "./FoodCarousel.css";
+
+//FoodCarousel component
 function FoodCarousel() {
   return (
     <>

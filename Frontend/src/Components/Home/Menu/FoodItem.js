@@ -1,18 +1,25 @@
 import React from "react";
 import { useState } from "react";
 
+//FoodItem component
+
 const FoodItem = ({ fooditem }) => {
+  //here i have created one state for appearing and disappearing AdDto cart button
   const [appear, setAppear] = useState("true");
+  //Duspaling the total Quantity of whatever item you have added
   const [totalItems, setTotalItems] = useState(0);
 
+  //Fuction for disappearing button
   const disAppearButton = () => {
     setAppear((prevState) => !prevState);
   };
 
+  //Adding item
   const addingFood = () => {
     setTotalItems((prevItem) => ++prevItem);
   };
 
+  //Removing item
   const removingFood = () => {
     if (totalItems === 0) {
       return setAppear(true);
