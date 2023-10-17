@@ -2,6 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import Rating from "react-rating-stars-component";
 
+//RestaurntList Component
 function RestaurantList({ resList }) {
   return (
     <div className="card  res_list">
