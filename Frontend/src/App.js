@@ -8,6 +8,8 @@ import Mainpage from "./Pages/Mainpage";
 import LoginPage from "./Pages/LoginPage";
 import HomePage from "./Pages/HomePage";
 import SignupPage from "./Pages/SignupPage";
+import ForgotPasswordPage from "./Pages/ForgotPasswordPage";
+import PaymentPage from "./Pages/PaymentPage";
 import Error from "./Pages/Error";
 import MenuPage from "./Pages/MenuPage";
 
@@ -19,6 +21,12 @@ const router = createBrowserRouter(
       <Route path="eats/stores/:id/menus" element={<MenuPage />} exact />
       <Route path="users/login" element={<LoginPage />} exact />
       <Route path="users/signup" element={<SignupPage />} exact />
+      <Route
+        path="users/forgotPassword"
+        element={<ForgotPasswordPage />}
+        exact
+      />
+      <Route path="users/payment" element={<PaymentPage />} exact />
     </Route>
   )
 );

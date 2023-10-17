@@ -64,7 +64,7 @@ const LoginDetails = () => {
               }}
             />
           </div>
-          <Link to="/" className="forgot_password">
+          <Link to="/users/forgotPassword" className="forgot_password">
             Forgot Password?
           </Link>
 

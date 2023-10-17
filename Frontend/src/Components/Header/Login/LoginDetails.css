@@ -17,45 +17,44 @@
 
 .formfield {
   padding: 20px;
-}
+} 
 
-.email,
 .password {
   width: 100%;
   padding: 10px 0px;
-}
+} 
 .email_input,
 .password_input {
   width: 100%;
   padding: 5px;
   border-radius: 2px;
   border: 1px solid black;
-}
+} 
 
 .email_label,
 .password_label {
   padding: 10px 5px;
-  /* font-weight: bold; */
-}
+   font-weight: bold; 
+} 
 
-.forgot_password,
+ .forgot_password,
 .new_user {
   text-decoration: none;
   color: white;
   display: flex;
   justify-content: flex-end;
   margin: 15px 0px;
-}
+} 
 
 .forgot_password:hover {
   text-decoration: underline;
-}
+} 
 
-.new_user:hover {
+ .new_user:hover {
   text-decoration: underline;
-}
+} 
 
-.login_button {
+ .login_button {
   width: 100%;
   display: flex;
   justify-content: center;
