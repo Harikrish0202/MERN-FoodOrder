@@ -40,16 +40,14 @@ exports.signup = async (req, res, next) => {
     res.status(201).json({
       status: "success",
       token,
-      data: {
-        user: newUser,
-      },
+      user: newUser,
     });
   } catch (error) {
     // console.log(error);
     if (error.code === 11000) {
       return res.status(409).json({
         status: "fail",
-        error: "Email address already exists. Please use a different email.",
+        error: "Email address already exists",
       });
     }
     res.status(400).json({
@@ -95,9 +93,7 @@ exports.login = async (req, res, next) => {
     res.status(200).json({
       status: "success",
       token,
-      data: {
-        user: user,
-      },
+      user: user,
     });
   } catch (error) {
     if (error.message === "Incorrect email or password") {
@@ -127,7 +123,7 @@ exports.getUserLogins = async (req, res, next) => {
 //FOR USER LOGOUT
 exports.logOut = async (req, res, next) => {
   res.cookie("jwt", "loggedout", {
-    expires: new Date(Date.now() + 10 * 1000), // 10 seconds from now.
+    expires: new Date(Date.now() + 2 * 1000), // 10 seconds from now.
     httpOnly: true,
   });
   res.status(200).json({ status: "success" });

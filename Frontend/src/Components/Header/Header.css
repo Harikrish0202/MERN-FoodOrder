@@ -30,9 +30,23 @@
   border-color: white;
 }
 
+.navbar-collapse {
+  flex-grow: 1;
+  justify-content: flex-start;
+}
+
+.search-cart-login {
+  display: flex;
+
+  flex-grow: 1;
+}
+
+.search {
+  flex-grow: 1;
+}
+
 .search_form {
-  /* width: 30%; */
-  flex-grow: 3;
+  width: 100%;
   padding: 8px;
   border-radius: 10px;
   border: none;
@@ -57,19 +71,6 @@
 .search_icon:focus {
   outline: none;
 }
-
-.navbar-collapse {
-  flex-grow: 1;
-  justify-content: flex-end;
-}
-
-.cart-and-login {
-  /* display: flex; */
-  justify-content: center;
-
-  /* flex-grow: 5; */
-}
-
 .cart {
   width: 120px;
   /* flex-grow: 1; */
@@ -119,19 +120,49 @@
 .nav_login {
   width: 120px;
   margin: 5px;
-
   text-align: center;
   padding: 5px;
   font-size: 20px;
   border: white;
   border-radius: 10px;
 }
+
+.nav_login:hover {
+  background-color: white;
+  transition: 0.2s;
+}
 .nav_login:hover span {
   color: black;
   transition: 0.2s;
 }
 
-.nav_login:hover {
+.dropdown-toggle:hover::after {
+  color: black; /* Change the color to your desired color */
+}
+.navbar-toggler,
+.navbar-toggler-icon {
+  color: white;
   background-color: white;
-  transition: 0.2s;
+}
+
+.shake-animation {
+  animation: shake 0.2s ease-in-out infinite; /* Use the 'shake' animation */
+}
+
+@keyframes shake {
+  0% {
+    transform: translateX(0);
+  }
+  25% {
+    transform: translateX(-5px);
+  }
+  50% {
+    transform: translateX(5px);
+  }
+  75% {
+    transform: translateX(-5px);
+  }
+  100% {
+    transform: translateX(5px);
+  }
 }

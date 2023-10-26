@@ -16,7 +16,7 @@ export const restaurantsData = () => async (dispatch) => {
     );
   } catch (error) {
     dispatch(
-      restaurantAction.getErrors({
+      restaurantAction.Errors({
         errors: error,
       })
     );

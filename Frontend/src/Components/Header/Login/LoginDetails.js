@@ -1,35 +1,37 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Form, Link, useNavigate } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
 import "./LoginDetails.css";
-import axios from "axios";
+
+import { Login } from "../../../store/user/user-action";
+import { toast } from "react-toastify";
+import { userActions } from "../../../store/user/user-slice";
 
 const LoginDetails = () => {
   //useNavigate is used to redirect the page
+  const { isAuthenticated, errors } = useSelector((state) => state.users);
+
   const navigate = useNavigate();
+  const dispatch = useDispatch();
   const [userData, setUserData] = useState({
     email: "",
     password: "",
   });
 
+  useEffect(() => {
+    if (isAuthenticated) {
+      toast.success("User Login Successfully");
+      //once the submission gets succesfully after that this page will goes to home page automatically
+      navigate("/");
+    } else {
+      toast.error(errors);
+      dispatch(userActions.Errors([]));
+    }
+  }, [dispatch, isAuthenticated, navigate, errors]);
+
   const submitHandler = async (event) => {
     event.preventDefault();
-    try {
-      const response = await axios.post("/api/v1/eats/users/login", userData);
-      console.log(response);
-      if (response.status === 200) {
-        console.log("user logged in successfully!");
-        setUserData({
-          email: "",
-          password: "",
-        });
-      } else {
-        console.log("user logged in failed!");
-      }
-    } catch (error) {
-      console.log("error:", error);
-    }
-    //once the submission gets succesfully after that this page will goes to home page automatically
-    navigate("/");
+    dispatch(Login(userData));
   };
   return (
     <main className="form_container">
@@ -45,6 +47,7 @@ const LoginDetails = () => {
               type="email"
               name="email"
               className="email_input"
+              autoComplete="username"
               required
               onChange={(e) => {
                 setUserData({ ...userData, email: e.target.value });
@@ -60,6 +63,7 @@ const LoginDetails = () => {
               type="password"
               name="password"
               className="password_input"
+              autoComplete="current-password"
               required
               onChange={(e) => {
                 setUserData({ ...userData, password: e.target.value });

@@ -6,19 +6,43 @@ const userSlice = createSlice({
     isAuthenticated: false,
     loading: false,
     user: null,
-    error: null,
+    errors: [],
   },
   reducers: {
-    getSignupRequest(state) {
+    signupRequest(state) {
       state.loading = true;
     },
-    getSignupDetails(state, action) {
+    signupDetails(state, action) {
       state.user = action.payload.user;
       state.isAuthenticated = true;
       state.loading = false;
     },
-    getErrors(state, action) {
-      state.error = action.payload.errors;
+    loginRequest(state) {
+      state.loading = true;
+    },
+    loginDetails(state, action) {
+      state.user = action.payload.user;
+      state.isAuthenticated = true;
+      state.loading = false;
+    },
+    logoutRequest(state) {
+      state.loading = true;
+    },
+    logOut(state, action) {
+      state.user = action.payload.user;
+      state.isAuthenticated = false;
+      state.loading = false;
+    },
+    currentUserRequest(state) {
+      state.loading = true;
+    },
+    currentUser(state, action) {
+      state.user = action.payload.user;
+      state.isAuthenticated = true;
+      state.loading = false;
+    },
+    Errors(state, action) {
+      state.errors = action.payload.errors;
     },
   },
 });

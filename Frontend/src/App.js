@@ -17,6 +17,10 @@ import Error from "./Pages/Error";
 import MenuPage from "./Pages/MenuPage";
 import { Flip, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { currentUser } from "./store/user/user-action";
+import { useEffect } from "react";
+import { useDispatch } from "react-redux";
+import CartPage from "./Pages/CartPage";
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -34,11 +38,16 @@ const router = createBrowserRouter(
       <Route path="users/payment" element={<PaymentPage />} exact />
       <Route path="users/me" element={<UserProfilePage />} exact />
       <Route path="users/updateProfile" element={<UpdateProfilePage />} exact />
+      <Route path="cart/cartdetails" element={<CartPage />} exact />
     </Route>
   )
 );
 
 const App = () => {
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(currentUser());
+  }, [dispatch]);
   return (
     <>
       <ToastContainer

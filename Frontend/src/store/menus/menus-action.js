@@ -24,7 +24,7 @@ export const menusData = (id) => async (dispatch) => {
     );
   } catch (error) {
     dispatch(
-      menuActions.getErrors({
+      menuActions.Errors({
         errors: error,
       })
     );

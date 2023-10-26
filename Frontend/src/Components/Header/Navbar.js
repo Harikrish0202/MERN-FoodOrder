@@ -12,10 +12,6 @@ function Navbar() {
         <Link to="/" className="navbar-brand logo_width ">
           <img className="logo" src="/Images/logo.webp" alt="logoImage" />
         </Link>
-        <Routes>
-          <Route path="/" element={<Search />} />
-          <Route path="/eats/stores/search/:resname" element={<Search />} />
-        </Routes>
 
         <button
           className="navbar-toggler"
@@ -29,7 +25,16 @@ function Navbar() {
           <span className="navbar-toggler-icon"></span>
         </button>
         <div className="collapse navbar-collapse" id="navbarSupportedContent">
-          <ul className="navbar-nav  mb-lg-0 cart-and-login">
+          <ul className="navbar-nav  mb-lg-0 search-cart-login">
+            <li className="nav-item search">
+              <Routes>
+                <Route path="/" element={<Search />} />
+                <Route
+                  path="/eats/stores/search/:resname"
+                  element={<Search />}
+                />
+              </Routes>
+            </li>
             <li className="nav-item active">
               <Cart />
             </li>

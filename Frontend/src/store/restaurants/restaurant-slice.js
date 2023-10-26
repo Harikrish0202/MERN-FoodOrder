@@ -11,7 +11,7 @@ const restaurantSlice = createSlice({
       state.restaurant = action.payload.restaurant;
       state.loading = false;
     },
-    getErrors(state, action) {
+    Errors(state, action) {
       state.loading = false;
       state.error = action.payload.errors;
     },
