@@ -68,13 +68,3 @@ exports.deleteMenu = async (req, res, next) => {
     });
   }
 };
-
-// exports.populateMenu = async (req, res, next) => {
-//   try {
-//     console.log("Aggregation here!");
-//     // const result = await Menu.aggregate([]);
-//     // return result;
-//   } catch (error) {
-//     console.log(error.message);
-//   }
-// };

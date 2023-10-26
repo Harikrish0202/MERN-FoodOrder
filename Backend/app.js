@@ -30,7 +30,7 @@ app.use(cookieParser()); // Cookie parser, parses data from cookies.
 
 //   next();
 // });
-app.use("/api/v1/eats", foodRoutes);
+app.use("/api/v1/eats/foods", foodRoutes);
 app.use("/api/v1/eats/stores", restaurantRoutes);
 app.use("/api/v1/eats/stores", menuRoutes);
 app.use("/api/v1/eats/orders", orderRoutes);

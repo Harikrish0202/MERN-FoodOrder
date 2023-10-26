@@ -1,13 +1,14 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Form, useNavigate } from "react-router-dom";
 
 import "./SignupDetails.css";
 import { useDispatch, useSelector } from "react-redux";
 import { signUp } from "../../../store/user/user-action";
 import { toast } from "react-toastify";
+import { userActions } from "../../../store/user/user-slice";
 
 const SignupDetails = () => {
-  const { error } = useSelector((state) => state.users);
+  const { errors, isAuthenticated } = useSelector((state) => state.users);
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
@@ -19,20 +20,26 @@ const SignupDetails = () => {
     phoneNumber: "",
   });
 
-  const submitHandler = (event) => {
-    event.preventDefault();
-    //here i am sending user information to signUpfunction
-    dispatch(signUp(userData));
-    if (error) {
-      return toast.error("User Signup Failed");
-    } else {
+  useEffect(() => {
+    if (isAuthenticated) {
       //Sending the pop up message
       toast.success(" User Signup Successfully!");
-      //it will get redirect to home page
-      setTimeout(() => {
-        navigate("/");
-      }, 3000);
+      //it will get redirect to home pageW
+      navigate("/");
+    } else {
+      toast.error(errors);
+      dispatch(userActions.Errors([]));
     }
+  }, [errors, isAuthenticated, navigate, dispatch]);
+
+  const submitHandler = (event) => {
+    event.preventDefault();
+
+    if (userData.password !== userData.passwordConfirm) {
+      return toast.error("Password Does not Match");
+    }
+    //here i am sending user information to signUpfunction
+    dispatch(signUp(userData));
   };
 
   return (

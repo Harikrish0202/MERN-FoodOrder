@@ -1,30 +1,61 @@
 import React from "react";
 import { useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+// import { cartActions } from "../../../store/cart/cart-slice";
+import { toast } from "react-toastify";
+import { addItem } from "../../../store/cart/cart-action";
+import { removeItem } from "../../../store/cart/cart-action";
+import { useEffect } from "react";
 
 //FoodItem component
 
 const FoodItem = ({ fooditem }) => {
-  //here i have created one state for appearing and disappearing AdDto cart button
+  const dispatch = useDispatch();
+  //here i have created one state for appearing and disappearing Addto cart button
   const [appear, setAppear] = useState("true");
   //Duspaling the total Quantity of whatever item you have added
   const [totalItems, setTotalItems] = useState(0);
+  const { items } = useSelector((state) => state.cart);
+
+  // whenever the the items and fooditem changing this use effect will run
+  useEffect(() => {
+    const cartItem = items.find((item) => item.id === fooditem._id);
+    if (cartItem) {
+      setTotalItems(cartItem.quantity);
+      setAppear(false);
+    }
+  }, [items, fooditem]);
 
   //Fuction for disappearing button
   const disAppearButton = () => {
+    dispatch(addItem(fooditem._id));
+
     setAppear((prevState) => !prevState);
+    setTotalItems((prevState) => prevState + 1);
+    toast.success("Item Added");
   };
 
   //Adding item
-  const addingFood = () => {
-    setTotalItems((prevItem) => ++prevItem);
+  const addToCartHandler = () => {
+    dispatch(addItem(fooditem._id));
+
+    setTotalItems((prevState) => prevState + 1);
+    toast.success("Item Added");
   };
 
   //Removing item
-  const removingFood = () => {
-    if (totalItems === 0) {
+  const removeToItemHandler = () => {
+    if (totalItems === 1) {
+      dispatch(removeItem(fooditem._id));
+
+      setTotalItems((prevState) => prevState - 1);
+      toast.success("Item Removed");
       return setAppear(true);
     }
-    setTotalItems((prevItem) => --prevItem);
+
+    dispatch(removeItem(fooditem._id));
+    setTotalItems((prevState) => prevState - 1);
+    toast.success("Item Removed");
   };
 
   return (
@@ -42,6 +73,7 @@ const FoodItem = ({ fooditem }) => {
           </p>
           <h6 className="card-title menu_price">&#8377;{fooditem.price}</h6>
           <div className="button_container">
+            {/* Displaying the add */}
             {appear && (
               <button className="button" onClick={disAppearButton}>
                 Add to cart
@@ -49,11 +81,19 @@ const FoodItem = ({ fooditem }) => {
             )}
             {!appear && (
               <p>
-                <button className="removing_btn" onClick={removingFood}>
+                {/* Removing Items */}
+                <button
+                  className="removing_btn btn"
+                  onClick={removeToItemHandler}
+                >
                   -
                 </button>
                 <span>{totalItems}</span>
-                <button className="adding_btn" onClick={addingFood}>
+                {/* Add Items */}
+                <button
+                  className="adding_btn btn btn-primary"
+                  onClick={addToCartHandler}
+                >
                   +
                 </button>
               </p>

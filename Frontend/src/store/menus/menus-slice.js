@@ -14,7 +14,7 @@ const menuSlice = createSlice({
       state.loading = false;
     },
     //Get all Errors
-    getErrors(state, action) {
+    Errors(state, action) {
       state.loading = false;
       state.error = action.payload.errors;
     },

@@ -1,81 +1,90 @@
 const Food = require("../Models/fooditemModel");
 
-exports.getAllFood = async (req, res, next) => {
-  try {
-    const foods = await Food.find();
-    res.status(200).json({
-      success: true,
-      data: foods,
-    });
-  } catch (error) {
-    res.status(500).json({ message: error.message });
-  }
-};
-
-exports.createFood = async (req, res, next) => {
-  try {
-    const food = await Food.create(req.body);
-    res.status(201).json({
-      success: true,
-      data: food,
-    });
-  } catch (err) {
-    res.status(500).json({ message: err.message });
-  }
-};
-
 exports.oneFood = async (req, res, next) => {
   try {
-    const food = await Food.findById(req.params.foodId);
+    const food = await Food.findOne({
+      _id: req.params.foodId,
+    });
+    console.log(food);
 
-    if (!food) throw new Error("No food found");
+    if (!food) {
+      return res.status(404).json({
+        error: {
+          message: "No food found",
+        },
+      });
+    }
 
     res.status(200).json({
       success: true,
       data: food,
     });
-  } catch (err) {
-    res.status(404).json({
-      success: true,
-      data: err.message,
+  } catch (error) {
+    res.status(500).json({
+      error: {
+        message: "Internal Server Error",
+      },
     });
   }
 };
+// exports.getAllFood = async (req, res, next) => {
+//   try {
+//     const foods = await Food.find();
+//     res.status(200).json({
+//       success: true,
+//       data: foods,
+//     });
+//   } catch (error) {
+//     res.status(500).json({ message: error.message });
+//   }
+// };
 
-exports.updateFood = async (req, res, next) => {
-  try {
-    const food = await Food.findByIdAndUpdate(req.params.foodId, req.body, {
-      new: true,
-      runValidators: true,
-    });
+// exports.createFood = async (req, res, next) => {
+//   try {
+//     const food = await Food.create(req.body);
+//     res.status(201).json({
+//       success: true,
+//       data: food,
+//     });
+//   } catch (err) {
+//     res.status(500).json({ message: err.message });
+//   }
+// };
 
-    if (!food) throw new Error("No food found");
+// exports.updateFood = async (req, res, next) => {
+//   try {
+//     const food = await Food.findByIdAndUpdate(req.params.foodId, req.body, {
+//       new: true,
+//       runValidators: true,
+//     });
 
-    res.status(200).json({
-      success: true,
-      data: food,
-    });
-  } catch (err) {
-    res.status(404).json({
-      success: true,
-      data: err.message,
-    });
-  }
-};
+//     if (!food) throw new Error("No food found");
 
-exports.deleteFood = async (req, res, next) => {
-  try {
-    const food = await Food.findByIdAndRemove(req.params.foodId);
+//     res.status(200).json({
+//       success: true,
+//       data: food,
+//     });
+//   } catch (err) {
+//     res.status(404).json({
+//       success: true,
+//       data: err.message,
+//     });
+//   }
+// };
 
-    if (!food) throw new Error("No food found");
+// exports.deleteFood = async (req, res, next) => {
+//   try {
+//     const food = await Food.findByIdAndRemove(req.params.foodId);
 
-    res.status(204).json({
-      success: true,
-    });
-  } catch (err) {
-    res.status(404).json({
-      success: true,
-      data: err.message,
-    });
-  }
-};
+//     if (!food) throw new Error("No food found");
+
+//     res.status(204).json({
+//       success: true,
+//     });
+//   } catch (err) {
+//     res.status(404).json({
+//       success: true,
+//       data: err.message,
+//     });
+//   }
+// };
