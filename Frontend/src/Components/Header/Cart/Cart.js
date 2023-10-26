@@ -11,6 +11,7 @@ function Cart() {
         style={{ textDecoration: "none", color: "white" }}
       >
         <span className="cartname">Cart</span>
+
         <span className="cartnumber" style={{ display: "inline-block" }}>
           0
         </span>

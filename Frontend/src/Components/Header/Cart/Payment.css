@@ -1,0 +1,51 @@
+#container1{
+    height: 350px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center; 
+    margin:10px;
+    margin-top:60px;
+    /* background-color: aqua; */
+}
+
+#paymentform{
+    color: white;
+    background-color: rgb(65, 60, 60, 0.5);
+    box-shadow: 5px 5px 5px 5px #888888;
+    width: 400px;
+    padding: 15px;
+}
+
+#card_name,#card_no{
+    margin:15px 0px;
+    border-radius: 5px;
+    width: 100%;
+    padding: 5px;
+}
+#card_cvv{
+    width: 23%;
+    margin:15px 0px 15px 7px;
+    border-radius: 5px;
+    padding: 5px;
+}
+#card_expiry{
+    margin:15px 0px 15px 0px;
+    width: 75%;
+    border-radius: 5px;
+    padding: 5px;
+}
+#paymentbtn{
+    width: 100%;
+    margin: 20px 0px;
+    border-radius: 10px;
+    background-color: #be521f;
+    padding: 10px;
+    border: none;
+    color: white;
+}
+#heading{
+    margin-top: 25px;
+    text-align: center;
+    font-weight: bold;
+}
