@@ -13,6 +13,8 @@ import ForgotPasswordPage from "./Pages/ForgotPasswordPage";
 import PaymentPage from "./Pages/PaymentPage";
 import UserProfilePage from "./Pages/UserProfilePage";
 import UpdateProfilePage from "./Pages/UpdateProfilePage";
+import DeliveryPage from "./Pages/DeliveryPage";
+import OrderDetailsPage from "./Pages/OrderDetailsPage";
 import Error from "./Pages/Error";
 import MenuPage from "./Pages/MenuPage";
 import { Flip, ToastContainer } from "react-toastify";
@@ -38,6 +40,8 @@ const router = createBrowserRouter(
       <Route path="users/payment" element={<PaymentPage />} exact />
       <Route path="users/me" element={<UserProfilePage />} exact />
       <Route path="users/updateProfile" element={<UpdateProfilePage />} exact />
+      <Route path="users/delivery" element={<DeliveryPage />} exact />
+      <Route path="users/orderdetails" element={<OrderDetailsPage />} exact />
       <Route path="cart/cartdetails" element={<CartPage />} exact />
     </Route>
   )

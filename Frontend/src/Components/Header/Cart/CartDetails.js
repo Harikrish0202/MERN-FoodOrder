@@ -28,6 +28,7 @@ const CartDetails = () => {
   const deleteToItemHandler = (id) => {
     dispatch(deleteItem(id));
   };
+
   return (
     <>
       {items.length === 0 && <h3 className="cart_none">You Cart is empty</h3>}
@@ -128,7 +129,7 @@ const CartDetails = () => {
                 </p>
                 <hr />
                 <div className="d-flex justify-content-center">
-                  <button id="checkout_btn" className="btn ">
+                  <button id="checkout_btn" className="btn">
                     Check Out
                   </button>
                 </div>
