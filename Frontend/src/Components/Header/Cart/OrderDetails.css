@@ -1,0 +1,14 @@
+#mainContainer {
+    color: white;
+    display: flex;
+}
+
+#section1 {
+    background-color: aqua;
+}
+
+#section2 {
+    background-color: red;
+}
+
+
