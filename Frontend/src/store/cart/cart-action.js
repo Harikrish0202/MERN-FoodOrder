@@ -17,6 +17,7 @@ export const addItem = (id) => async (dispatch) => {
         totalPrice: foodItem.price,
       })
     );
+
     //if any error is there it will catch the error and send to my reducer
   } catch (error) {
     dispatch(cartActions.error("Items Doesn't added"));

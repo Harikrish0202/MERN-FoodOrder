@@ -7,6 +7,7 @@ import { toast } from "react-toastify";
 import { addItem } from "../../../store/cart/cart-action";
 import { removeItem } from "../../../store/cart/cart-action";
 import { deleteItem } from "../../../store/cart/cart-action";
+import { Link } from "react-router-dom";
 
 const CartDetails = () => {
   const dispatch = useDispatch();
@@ -40,8 +41,8 @@ const CartDetails = () => {
             <div className="col-12 col-lg-8">
               {items.map((item) => (
                 <>
-                  <hr style={{ color: "white" }}></hr>
-                  <div className="cart_item ">
+                  <div className="cart_item " key={item.id}>
+                    <hr style={{ color: "white" }}></hr>
                     <div className="row container ">
                       <div className="col-12 col-lg-3 item_image d-flex justify-content-center align-items-center">
                         <img
@@ -94,8 +95,8 @@ const CartDetails = () => {
                         ></i>
                       </div>
                     </div>
+                    <hr style={{ color: "white" }}></hr>
                   </div>
-                  <hr style={{ color: "white" }}></hr>
                 </>
               ))}
             </div>
@@ -128,9 +129,12 @@ const CartDetails = () => {
                 </p>
                 <hr />
                 <div className="d-flex justify-content-center">
-                  <button id="checkout_btn" className="btn ">
+                  {/* <button id="checkout_btn" className="btn "> */}
+                  <Link id="checkout_btn" className="btn " to="/users/payment">
                     Check Out
-                  </button>
+                  </Link>
+
+                  {/* </button> */}
                 </div>
               </div>
             </div>

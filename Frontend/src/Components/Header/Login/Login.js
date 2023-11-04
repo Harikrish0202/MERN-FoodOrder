@@ -5,7 +5,7 @@ import { Logout } from "../../../store/user/user-action";
 import { toast } from "react-toastify";
 
 //Login Component
-function Login() {
+const Login = () => {
   // Here i am getting the userinformation from by useSelectors
   const { user } = useSelector((state) => state.users);
   const dispatch = useDispatch();
@@ -37,12 +37,12 @@ function Login() {
             aria-labelledby="navbarScrollingDropdown"
           >
             <li>
-              <Link className="dropdown-item" to="/">
+              <Link className="dropdown-item" to="/users/updateProfile">
                 Profile
               </Link>
             </li>
             <li>
-              <Link className="dropdown-item" to="/">
+              <Link className="dropdown-item" to="/users/orders">
                 My orders
               </Link>
             </li>
@@ -71,6 +71,6 @@ function Login() {
       )}
     </>
   );
-}
+};
 
 export default Login;

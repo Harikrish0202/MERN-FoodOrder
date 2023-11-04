@@ -57,6 +57,7 @@ const SignupDetails = () => {
               name="name"
               className="signup_name_input"
               required
+              placeholder="Enter your name"
               onChange={(e) =>
                 setUserData({ ...userData, name: e.target.value })
               }
@@ -72,6 +73,7 @@ const SignupDetails = () => {
               name="signup_email"
               className="signup_email_input"
               required
+              placeholder="Enter your email"
               onChange={(e) =>
                 setUserData({ ...userData, email: e.target.value })
               }
@@ -85,8 +87,10 @@ const SignupDetails = () => {
             <input
               type="password"
               name="signup_password"
+              autoComplete="signup_password"
               className="signup_password_input"
               required
+              placeholder="Enter your password"
               onChange={(e) =>
                 setUserData({ ...userData, password: e.target.value })
               }
@@ -100,8 +104,10 @@ const SignupDetails = () => {
             <input
               type="password"
               name="signup_confirm"
+              autoComplete="signup_confirm"
               className="signup_confirm_input"
               required
+              placeholder="Enter your confirm password"
               onChange={(e) =>
                 setUserData({ ...userData, passwordConfirm: e.target.value })
               }
@@ -117,6 +123,7 @@ const SignupDetails = () => {
               name="number"
               className="signup_number_input"
               required
+              placeholder="Enter you mobile number"
               onChange={(e) =>
                 setUserData({ ...userData, phoneNumber: e.target.value })
               }

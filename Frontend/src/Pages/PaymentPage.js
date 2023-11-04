@@ -1,12 +1,12 @@
 import React from "react";
 import Payment from "../Components/Header/Cart/Payment";
 
-function PaymentPage() {
+const PaymentPage = () => {
   return (
     <>
       <Payment />
     </>
   );
-}
+};
 
 export default PaymentPage;
