@@ -3,11 +3,6 @@ const Restaurant = require("../Models/restaurantModel");
 exports.getAllRestaurant = async (req, res, next) => {
   try {
     const restaurants = await Restaurant.find();
-    // res.status(200).json({
-    //   data: restaurants,
-    // });
-
-    // res.set("Content-Type", "application/json");
     res.status(200).json({
       data: restaurants,
     });

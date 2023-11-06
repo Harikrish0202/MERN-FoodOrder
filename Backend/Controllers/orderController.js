@@ -1,73 +1,16 @@
-const Order = require("../Models/orderModel");
+const stripe = require("stripe")(
+  "sk_test_51Nu7qvSALNch1MIsRMTvcFaaKfLkXZNvsbJ6jAgD40mf3t2u0e59FiWm9OjQ2d6dYg1tMWjnyOetyNIs4vXsuCYV00qJFAE1Bf"
+);
+const Food = require("../Models/fooditemModel");
 
-exports.getAllOrder = async (req, res, next) => {
+exports.getCheckout = async (req, res, next) => {
   try {
-    const orders = await Order.find();
-    res.status(200).json({
-      success: true,
-      data: orders,
+    const paymentIntent = await stripe.paymentIntents.create({
+      amount: 100, // Amount in rupees
+      currency: "inr",
     });
+    res.json({ clientSecret: paymentIntent.client_secret });
   } catch (error) {
-    res.status(500).json({ message: error.message });
-  }
-};
-
-exports.oneOrder = async (req, res, next) => {
-  try {
-    const order = await Order.findById(req.params.orderId);
-
-    if (!order) throw new Error("No Order Found!");
-
-    res.status(200).json({
-      success: true,
-      data: order,
-    });
-  } catch (err) {
-    res.status(404).json({
-      success: true,
-      data: err.message,
-    });
-  }
-};
-
-exports.updateOrder = async (req, res, next) => {
-  try {
-    const uptOrder = await Food.findByIdAndUpdate(
-      req.params.orderId,
-      req.body,
-      {
-        new: true,
-        runValidators: true,
-      }
-    );
-
-    if (!uptOrder) throw new Error("No Order found");
-
-    res.status(200).json({
-      success: true,
-      data: uptOrder,
-    });
-  } catch (err) {
-    res.status(404).json({
-      success: true,
-      data: err.message,
-    });
-  }
-};
-
-exports.deleteOrder = async (req, res, next) => {
-  try {
-    const dltOrder = await Menu.findByIdAndRemove(req.params.orderId);
-
-    if (!dltOrder) throw new Error("No Order Found");
-
-    res.status(204).json({
-      success: true,
-    });
-  } catch (err) {
-    res.status(404).json({
-      success: true,
-      data: err.message,
-    });
+    res.status(500).json({ error: error.message });
   }
 };

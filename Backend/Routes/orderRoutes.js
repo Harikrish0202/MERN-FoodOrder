@@ -1,8 +1,9 @@
 const express = require("express");
 const Router = express.Router();
 
-const orderController = require("./../Controllers/orderController");
+const authController = require("../Controllers/authController");
+const orderController = require("../Controllers/orderController");
 
-Router.get("/", orderController.getAllOrder);
+Router.post("/create-payment-intent", orderController.getCheckout);
 
 module.exports = Router;

@@ -16,6 +16,13 @@ const Payment = () => {
   const submitDeliverData = (event) => {
     event.preventDefault();
     dispatch(cartActions.deliveryInfo(deliveryData));
+    setDeliveryData({
+      name: "",
+      street: "",
+      city: "",
+      country: "",
+      pincode: "",
+    })
   };
   return (
     <>
