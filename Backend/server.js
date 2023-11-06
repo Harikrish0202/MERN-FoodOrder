@@ -6,7 +6,7 @@ const app = require("./app");
 
 mongoose
   .connect(
-    "mongodb+srv://harikrishnan08902:Harikrishnan0202@cluster0.phjgvfc.mongodb.net/?retryWrites=true&w=majority"
+    "mongodb+srv://arumugaselvam23052003:wEPSMqGtoBsq6UYI@cluster0.a393mkw.mongodb.net/?retryWrites=true&w=majority"
   )
   .then((con) => {
     console.log(
@@ -19,20 +19,3 @@ const server = app.listen(4000, () => {
 });
 
 // // wEPSMqGtoBsq6UYI;
-
-// const express = require("express");
-// const cors = require("cors");
-// const app = express();
-
-// app.use(cors());
-// app.use(express.json());
-
-// app.get("/api/data", (req, res) => {
-//   const data = { message: "Hello from the server!" };
-//   res.json(data);
-// });
-
-// const PORT = process.env.PORT || 5000;
-// app.listen(PORT, () => {
-//   console.log(`Server is running on port ${PORT}`);
-// });

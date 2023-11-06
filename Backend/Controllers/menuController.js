@@ -1,17 +1,5 @@
 const Menu = require("../Models/menuModel");
 
-// exports.getAllMenu = async (req, res, next) => {
-//   try {
-//     const menus = await Menu.find();
-//     res.status(200).json({
-//       success: true,
-//       data: menus,
-//     });
-//   } catch (error) {
-//     res.status(500).json({ message: error.message });
-//   }
-// };
-
 exports.getMenu = async (req, res, next) => {
   try {
     const menu = await Menu.findOne({ restaurant: req.params.id }).populate(
