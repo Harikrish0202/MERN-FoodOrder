@@ -49,6 +49,7 @@ const LoginDetails = () => {
               className="email_input"
               autoComplete="username"
               required
+              placeholder="Enter your email"
               onChange={(e) => {
                 setUserData({ ...userData, email: e.target.value });
               }}
@@ -62,9 +63,10 @@ const LoginDetails = () => {
             <input
               type="password"
               name="password"
-              className="password_input"
               autoComplete="current-password"
+              className="password_input"
               required
+              placeholder="Enter your password "
               onChange={(e) => {
                 setUserData({ ...userData, password: e.target.value });
               }}

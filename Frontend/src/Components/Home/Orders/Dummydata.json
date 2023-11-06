@@ -1,0 +1,57 @@
+[
+  {
+    "restaurant": "Cafe Coffe Day",
+    "orderItems": "Espresso shot",
+    "numOfItems": 3,
+    "amount": 507,
+    "status": "Processing",
+    "orderDate": "23/10/23",
+    "actions": " Details "
+  },
+  {
+    "restaurant": "Hotel Empire",
+    "orderItems": "Paneer Tikka Butter Masala",
+    "numOfItems": 2,
+    "amount": 224,
+    "status": "Processing",
+    "orderDate": "10/10/23",
+    "actions": " Details "
+  },
+  {
+    "restaurant": "Pizza Hut",
+    "orderItems": "Double Decker",
+    "numOfItems": 2,
+    "amount": 380,
+    "status": "Processing",
+    "orderDate": "25/09/23",
+    "actions": " Details "
+  },
+
+  {
+    "restaurant": "Daily Sushi",
+    "orderItems": "TomatoSushi",
+    "numOfItems": 1,
+    "amount": 450,
+    "status": "Processing",
+    "orderDate": "13/09/23",
+    "actions": " Details "
+  },
+  {
+    "restaurant": "Domino's Pizza",
+    "orderItems": "Panner Pizza",
+    "numOfItems": 5,
+    "amount": 600,
+    "status": "Processing",
+    "orderDate": "02/09/23",
+    "actions": " Details "
+  },
+  {
+    "restaurant": "Meghna's Biriyani",
+    "orderItems": " Chicken Dum Biriyani",
+    "numOfItems": 2,
+    "amount": 300,
+    "status": "Processing",
+    "orderDate": "08/09/23",
+    "actions": " Details "
+  }
+]

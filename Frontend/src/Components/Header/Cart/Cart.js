@@ -15,7 +15,15 @@ function Cart() {
       >
         <span className="cartname">Cart</span>
 
+<<<<<<< HEAD
+        <span
+          id=""
+          className={`cartnumber`}
+          style={{ display: "inline-block" }}
+        >
+=======
         <span className="cartnumber" style={{ display: "inline-block" }}>
+>>>>>>> 5430afa5dc18718fb6b762b34e2f6f80943913d4
           {totalQuantity}
         </span>
       </Link>

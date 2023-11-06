@@ -7,7 +7,6 @@ exports.oneFood = async (req, res, next) => {
     const food = await Food.findOne({
       _id: foodId,
     });
-    console.log(food);
 
     if (!food) {
       return res.status(404).json({
