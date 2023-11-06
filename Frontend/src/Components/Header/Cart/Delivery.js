@@ -1,24 +1,79 @@
+import { useState } from "react";
 import "./Delivery.css";
-function Payment() {
+import { Form } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { cartActions } from "../../../store/cart/cart-slice";
+const Payment = () => {
+  const dispatch = useDispatch();
+  const [deliveryData, setDeliveryData] = useState({
+    name: "",
+    street: "",
+    city: "",
+    country: "",
+    pincode: "",
+  });
+
+  const submitDeliverData = (event) => {
+    event.preventDefault();
+    dispatch(cartActions.deliveryInfo(deliveryData));
+  };
   return (
     <>
       <main id="container1">
-        <form id="paymentform">
+        <Form id="paymentform" onSubmit={submitDeliverData}>
           <h1>Delivery Address</h1>
           <h5 id="heading">Enter Your Delivery Address:</h5>
-          <input placeholder="Name" id="customer_name"></input>
+          <input
+            placeholder="Name"
+            required
+            id="customer_name"
+            onChange={(e) =>
+              setDeliveryData({ ...deliveryData, name: e.target.value })
+            }
+          ></input>
           <br></br>
-          <input placeholder="House No,Street Name" id="street_name"></input>
+          <input
+            placeholder="House No,Street Name"
+            id="street_name"
+            required
+            onChange={(e) =>
+              setDeliveryData({ ...deliveryData, street: e.target.value })
+            }
+          ></input>
           <br></br>
-          <input placeholder="City" id="city" type="text"></input>
+          <input
+            placeholder="City"
+            id="city"
+            type="text"
+            required
+            onChange={(e) =>
+              setDeliveryData({ ...deliveryData, city: e.target.value })
+            }
+          ></input>
           <br />
-          <input placeholder="Country" id="country" type="text"></input>
+          <input
+            placeholder="Country"
+            id="country"
+            type="text"
+            required
+            onChange={(e) =>
+              setDeliveryData({ ...deliveryData, country: e.target.value })
+            }
+          ></input>
           <br />
-          <input placeholder="Pincode" id="pincode" type="text"></input>
+          <input
+            placeholder="Pincode"
+            id="pincode"
+            type=""
+            required
+            onChange={(e) =>
+              setDeliveryData({ ...deliveryData, pincode: e.target.value })
+            }
+          ></input>
           <button id="paymentbtn">Go To Payment</button>
-        </form>
+        </Form>
       </main>
     </>
   );
-}
+};
 export default Payment;

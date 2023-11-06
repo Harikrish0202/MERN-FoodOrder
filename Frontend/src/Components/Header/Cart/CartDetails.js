@@ -130,12 +130,8 @@ const CartDetails = () => {
                 </p>
                 <hr />
                 <div className="d-flex justify-content-center">
-<<<<<<< HEAD
                   {/* <button id="checkout_btn" className="btn "> */}
-                  <Link id="checkout_btn" className="btn " to="/users/payment">
-=======
-                  <button id="checkout_btn" className="btn">
->>>>>>> 5430afa5dc18718fb6b762b34e2f6f80943913d4
+                  <Link id="checkout_btn" className="btn " to="/delivery">
                     Check Out
                   </Link>
 

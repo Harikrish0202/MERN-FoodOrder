@@ -49,3 +49,11 @@ export const deleteItem = (id) => async (dispatch) => {
     dispatch(cartActions.error("Items Doesn't Removed"));
   }
 };
+
+export const saveDeliveryInfo = (deliveryData) => async (dispatch) => {
+  try {
+    dispatch(cartActions.deliveryInfo(deliveryData));
+  } catch (error) {
+    dispatch(cartActions.error("Delivery Info Does not Stored"));
+  }
+};

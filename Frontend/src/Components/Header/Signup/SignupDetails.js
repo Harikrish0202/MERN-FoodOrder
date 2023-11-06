@@ -24,7 +24,7 @@ const SignupDetails = () => {
     if (isAuthenticated) {
       //Sending the pop up message
       toast.success(" User Signup Successfully!");
-      //it will get redirect to home pageW
+      //it will get redirect to home page
       navigate("/");
     } else {
       toast.error(errors);
