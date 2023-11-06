@@ -17,7 +17,7 @@
     padding: 15px;
 }
 
-#customer_name,#street_name,#city,#country,#pincode{
+#customer_name,#phone_number,#street_name,#city,#country,#pincode{
     margin:14px 0px;
     border-radius: 5px;
     width: 100%;

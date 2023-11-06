@@ -1,14 +1,33 @@
-#mainContainer {
+.order-container{
+    margin: 25px;
+    box-shadow: 2px 2px 5px 6px #888888;
+    
+}
+
+.order-confirm {
     color: white;
+    justify-content: space-between;
+    margin-left: 35px;
+
+}
+
+#order_summary{
     display: flex;
+    flex-direction: column;
+    margin: 20px;
+    color: white;
+    border-radius: 5px;
+    background-color:rgb(77, 73, 73, 0.7);
+    padding: 10px;
+    box-shadow: 2px 2px 5px 6px #888888;
 }
 
-#section1 {
-    background-color: aqua;
+
+#prcdpayment{
+    border-radius: 10px;
+    background-color: #be521f;
+    padding: 10px;
+    border: none;
+    color: white;
+
 }
-
-#section2 {
-    background-color: red;
-}
-
-

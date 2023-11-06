@@ -8,6 +8,12 @@ function Payment() {
           <h5 id="heading">Enter Your Delivery Address:</h5>
           <input placeholder="Name" id="customer_name"></input>
           <br></br>
+          <input
+            placeholder="Phone Number"
+            id="phone_number"
+            type="tel"
+          ></input>
+          <br></br>
           <input placeholder="House No,Street Name" id="street_name"></input>
           <br></br>
           <input placeholder="City" id="city" type="text"></input>
