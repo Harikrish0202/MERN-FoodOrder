@@ -1,11 +1,14 @@
 import React, { Fragment } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import "./OrderDetails.css";
-import Icon from "react-crud-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 // import { faIndianRupeeSign } from "@fortawesome/free-solid-svg-icons";
 
 const OrderDetails = () => {
+  const navigate = useNavigate();
+  const changePage = () => {
+    navigate("/stripePayment");
+  };
   return (
     <>
       <div className="order-container row d-flex justify-content-between">
@@ -39,10 +42,10 @@ const OrderDetails = () => {
                 </div>
                 <div className="col-4 col-lg-4 mt-4 mt-lg-0">
                   <p>
-                    1 x <FontAwesomeIcon size="xs" />
+                    1 x{/* <FontAwesomeIcon size="xs" /> */}
                     69 =
                     <b>
-                      <FontAwesomeIcon size="xs" />
+                      {/* <FontAwesomeIcon size="xs" /> */}
                       69
                     </b>
                   </p>
@@ -60,21 +63,21 @@ const OrderDetails = () => {
             <p>
               Subtotal:{""}
               <span className="order-summary-values">
-                <FontAwesomeIcon size="xs" />
+                {/* <FontAwesomeIcon size="xs" /> */}
                 {}
               </span>
             </p>
             <p>
               Delivery Charges:{" "}
               <span className="order-summary-values">
-                <FontAwesomeIcon size="xs" />
+                {/* <FontAwesomeIcon size="xs" /> */}
                 {}
               </span>
             </p>
             <p>
               Tax:{" "}
               <span className="order-summary-values">
-                <FontAwesomeIcon size="xs" />
+                {/* <FontAwesomeIcon size="xs" /> */}
                 {}
               </span>
             </p>
@@ -83,13 +86,17 @@ const OrderDetails = () => {
             <p>
               Total:{" "}
               <span className="order-summary-values">
-                <FontAwesomeIcon size="xs" />
+                {/* <FontAwesomeIcon size="xs" /> */}
 
                 {}
               </span>
             </p>
             <hr />
-            <button id="prcdpayment" className="btn btn-primary btn-block">
+            <button
+              id="prcdpayment"
+              className="btn btn-primary btn-block"
+              onClick={changePage}
+            >
               Proceed to Payment
             </button>
             <br />

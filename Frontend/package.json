@@ -5,17 +5,15 @@
   "dependencies": {
     "@fortawesome/react-fontawesome": "github:fortawesome/react-fontawesome",
     "@reduxjs/toolkit": "^1.9.5",
+    "@stripe/react-stripe-js": "^2.3.1",
+    "@stripe/stripe-js": "^2.1.11",
     "@testing-library/jest-dom": "^5.17.0",
     "@testing-library/react": "^13.4.0",
     "@testing-library/user-event": "^13.5.0",
     "axios": "^1.4.0",
     "react": "^18.2.0",
-<<<<<<< HEAD
-    "react-bootstrap": "^2.8.0",
-    "react-crud-icons": "^1.2.3",
-=======
     "react-bootstrap": "^2.9.1",
->>>>>>> 9f8070164995f89672fc166169ffb5f3f4c242b3
+    "react-crud-icons": "^1.2.3",
     "react-dom": "^18.2.0",
     "react-loader-spinner": "^5.4.5",
     "react-rating-stars-component": "^2.2.0",

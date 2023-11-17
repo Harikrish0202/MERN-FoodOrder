@@ -4,6 +4,16 @@ const Router = express.Router();
 const authController = require("../Controllers/authController");
 const orderController = require("../Controllers/orderController");
 
-Router.post("/create-payment-intent", orderController.getCheckout);
+Router.post(
+  "/create-payment-intent",
+  //   authController.protect,
+  orderController.getCheckout
+);
+
+Router.post(
+  "/createorder",
+  authController.protect,
+  orderController.createOrder
+);
 
 module.exports = Router;
