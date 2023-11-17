@@ -1,5 +1,5 @@
 #container1 {
-  height: 350px;
+  height: auto;
   width: 100%;
   display: flex;
   justify-content: center;
@@ -15,11 +15,11 @@
   box-shadow: 5px 5px 5px 5px #888888;
   width: 400px;
   padding: 15px;
-  margin-top: 15%;
 }
 
 #customer_name,
 #street_name,
+#phone_number,
 #city,
 #country,
 #pincode {
@@ -29,12 +29,14 @@
   padding: 5px;
 }
 
+.paymentbtn,
 #paymentbtn {
   width: 100%;
-  margin: 15px 0px;
+  margin: 14px 0px;
+  padding: 8px;
+
   border-radius: 10px;
   background-color: #be521f;
-  padding: 10px;
   border: none;
   color: white;
 }

@@ -1,0 +1,40 @@
+.order-container {
+  width: 90%;
+  height: auto;
+  box-shadow: 2px 2px 5px 6px #888888;
+}
+
+.order-confirm {
+  color: white;
+  justify-content: space-between;
+}
+
+#order_summary {
+  display: flex;
+  flex-direction: column;
+
+  color: white;
+  border-radius: 5px;
+  background-color: rgb(77, 73, 73, 0.7);
+  padding: 10px;
+  box-shadow: 2px 2px 5px 6px #888888;
+}
+
+#prcdpayment,
+.prcdpayment {
+  text-align: center;
+  border-radius: 10px;
+  background-color: #be521f;
+  padding: 5px;
+  border: none;
+  color: white;
+}
+
+.row {
+  padding: 10px;
+}
+
+.item_name {
+  text-decoration: none;
+  color: white;
+}

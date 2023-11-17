@@ -6,6 +6,7 @@ export const addItem = (id) => async (dispatch) => {
     //Get the fooditem details from backend according to which id you have sent by dispatch
     const { data } = await axios.get(`/api/v1/eats/foods/${id}`);
     const foodItem = data.data;
+    console.log(foodItem);
     //here i am sending the fooditem to removing item
     dispatch(
       cartActions.addItemToCart({

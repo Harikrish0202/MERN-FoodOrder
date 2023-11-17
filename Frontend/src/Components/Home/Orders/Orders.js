@@ -3,7 +3,7 @@ import fakeData from "./Dummydata.json";
 import { useTable } from "react-table";
 import { Link } from "react-router-dom";
 
-import "./Order.css";
+import "./Orders.css";
 const Order = () => {
   const data = React.useMemo(() => fakeData, []);
   const [currentPage, setCurrentPage] = useState(0);
@@ -51,7 +51,7 @@ const Order = () => {
         accessor: "actions",
         Cell: () => {
           return (
-            <Link to={`/eats/orders/`} className="btn btn-primary">
+            <Link to={`/orders/ordersdetails`} className="btn btn-primary">
               <i className="fa fa-eye"></i>
             </Link>
           );

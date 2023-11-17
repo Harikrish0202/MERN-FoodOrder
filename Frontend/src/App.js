@@ -14,7 +14,7 @@ import PaymentPage from "./Pages/PaymentPage";
 import UserProfilePage from "./Pages/UserProfilePage";
 import UpdateProfilePage from "./Pages/UpdateProfilePage";
 import DeliveryPage from "./Pages/DeliveryPage";
-import OrderDetailsPage from "./Pages/OrderDetailsPage";
+
 import Error from "./Pages/Error";
 import MenuPage from "./Pages/MenuPage";
 import { Flip, ToastContainer } from "react-toastify";
@@ -24,11 +24,19 @@ import { useEffect } from "react";
 import { useDispatch } from "react-redux";
 import CartPage from "./Pages/CartPage";
 import OrderPage from "./Pages/OrderPage";
+import DeliveryDetailsPage from "./Pages/DeliveryDetailsPage";
+import OrdersDetails from "./Components/Home/Orders/OrdersDetails";
+import { Elements } from "@stripe/react-stripe-js";
+import { loadStripe } from "@stripe/stripe-js";
 const App = () => {
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(currentUser());
   }, [dispatch]);
+
+  const stripePromise = loadStripe(
+    "pk_test_51Nu7qvSALNch1MIs31dRgF7ApJkXUZwhnpGe3oQOmeBdHuzk70OMnHudvbs4KW5rXMdXpSlUZUQdwsJFBJYO3KpM005OTQNsPr"
+  );
 
   const baseRouteElement = (
     <Route path="*" element={<Mainpage />} errorElement={<Error />}>
@@ -49,6 +57,11 @@ const App = () => {
       <Route id="signup" path="users/signup" element={<SignupPage />} exact />
       <Route id="delivery" path="delivery" element={<DeliveryPage />} exact />
       <Route
+        id="deliverydetails"
+        path="delivery/deliverydetails"
+        element={<DeliveryDetailsPage />}
+      />
+      <Route
         id="forgotPassword"
         path="users/forgotPassword"
         element={<ForgotPasswordPage />}
@@ -56,11 +69,20 @@ const App = () => {
       />
       <Route
         id="payment"
-        path="users/payment"
-        element={<PaymentPage />}
+        path="payment"
+        element={
+          <Elements stripe={stripePromise}>
+            <PaymentPage />
+          </Elements>
+        }
         exact
       />
       <Route id="orders" path="users/orders" element={<OrderPage />} exact />
+      <Route
+        id="orderdetails"
+        path="orders/ordersdetails"
+        element={<OrdersDetails />}
+      />
 
       <Route
         id="userProfile"
