@@ -12,6 +12,7 @@ import {
 
 import "./Payment.css";
 import { useNavigate } from "react-router-dom";
+<<<<<<< HEAD
 import { ordersAction } from "../../../store/orders/order-slice";
 
 const PaymentForm = () => {
@@ -24,6 +25,11 @@ const PaymentForm = () => {
   const order = {
     orderItems: items,
   };
+=======
+
+const PaymentForm = () => {
+  const { isAuthenticated } = useSelector((state) => state.users);
+>>>>>>> 099142ca4788b62ae381ad6e54aad019349fda8e
   const navigate = useNavigate();
   useEffect(() => {
     if (!isAuthenticated) {

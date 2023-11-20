@@ -4,6 +4,13 @@ import {
   Route,
   RouterProvider,
 } from "react-router-dom";
+import {
+  Elements,
+  CardElement,
+  useStripe,
+  useElements,
+} from "@stripe/react-stripe-js";
+import { loadStripe } from "@stripe/stripe-js";
 
 import Mainpage from "./Pages/Mainpage";
 import LoginPage from "./Pages/LoginPage";
@@ -14,6 +21,8 @@ import PaymentPage from "./Pages/PaymentPage";
 import UserProfilePage from "./Pages/UserProfilePage";
 import UpdateProfilePage from "./Pages/UpdateProfilePage";
 import DeliveryPage from "./Pages/DeliveryPage";
+import OrderDetailsPage from "./Pages/OrderDetailsPage";
+import StripePage from "./Stripe";
 
 import Error from "./Pages/Error";
 import MenuPage from "./Pages/MenuPage";
@@ -23,11 +32,12 @@ import { currentUser } from "./store/user/user-action";
 import { useEffect } from "react";
 import { useDispatch } from "react-redux";
 import CartPage from "./Pages/CartPage";
+
 import OrderPage from "./Pages/OrderPage";
+
 import DeliveryDetailsPage from "./Pages/DeliveryDetailsPage";
 import OrdersDetails from "./Components/Home/Orders/OrdersDetails";
-import { Elements } from "@stripe/react-stripe-js";
-import { loadStripe } from "@stripe/stripe-js";
+
 const App = () => {
   const dispatch = useDispatch();
   useEffect(() => {
@@ -69,7 +79,7 @@ const App = () => {
       />
       <Route
         id="payment"
-        path="payment"
+        path="users/payment"
         element={
           <Elements stripe={stripePromise}>
             <PaymentPage />
@@ -97,6 +107,18 @@ const App = () => {
         exact
       />
       <Route id="cart" path="cart/cartdetails" element={<CartPage />} exact />
+      <Route path="users/delivery" element={<DeliveryPage />} exact />
+      <Route path="users/orderdetails" element={<OrderDetailsPage />} exact />
+
+      {/* <Route
+        path="create-payment-intent"
+        element={
+          <Elements stripe={stripePromise}>
+            <StripePage />
+          </Elements>
+        }
+        exact
+      /> */}
     </Route>
   );
 

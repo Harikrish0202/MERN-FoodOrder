@@ -6,4 +6,11 @@ const orderController = require("../Controllers/orderController");
 
 Router.post("/create-payment-intent", orderController.getCheckout);
 
+Router.post(
+  "/createorder",
+  authController.protect,
+  orderController.createOrder
+);
+
+Router.get("/getorders", orderController.getAllOrders);
 module.exports = Router;

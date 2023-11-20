@@ -172,6 +172,7 @@ exports.protect = async (req, res, next) => {
       );
     }
     req.user = currentUser;
+    console.log("selvam");
     // Grand Access.
     next();
   } catch (error) {

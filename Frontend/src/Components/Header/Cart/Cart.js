@@ -15,6 +15,7 @@ function Cart() {
       >
         <span className="cartname">Cart</span>
 
+        {/* <span className={`cartnumber`}style={{ display: "inline-block" }}> */}
         <span className="cartnumber" style={{ display: "inline-block" }}>
           {totalQuantity}
         </span>
