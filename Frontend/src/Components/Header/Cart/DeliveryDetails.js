@@ -7,9 +7,8 @@ const DeliveryDetails = () => {
   // const dispatch = useDispatch();
   const navigate = useNavigate();
   const { deliveryInfo, items } = useSelector((state) => state.cart);
-  console.log(items);
 
-  //This function is calculating the subtoatl of items
+  //This function is calculating the subtoatal of items
   const calculateSubtotal = () => {
     return items.reduce((total, item) => total + item.price * item.quantity, 0);
   };

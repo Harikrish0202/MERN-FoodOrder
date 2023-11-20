@@ -1,6 +1,6 @@
-import React, { useState } from "react";
+import React from "react";
 import { useEffect } from "react";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { toast } from "react-toastify";
 import {
   CardNumberElement,
@@ -11,21 +11,35 @@ import {
 } from "@stripe/react-stripe-js";
 
 import "./Payment.css";
+import { useNavigate } from "react-router-dom";
+import { ordersAction } from "../../../store/orders/order-slice";
 
 const PaymentForm = () => {
-  const { isAuthenticated } = useSelector((state) => state.users);
+  const dispatch = useDispatch();
+  const { items } = useSelector((state) => state.cart);
+  const { orders } = useSelector((state) => state.orders);
+  console.log(orders);
 
+  const { isAuthenticated } = useSelector((state) => state.users);
+  const order = {
+    orderItems: items,
+  };
+  const navigate = useNavigate();
   useEffect(() => {
     if (!isAuthenticated) {
-      toast.warning("You have not logged in yet. Please login to get access");
+      toast.warning("You have not logged yet. Please login to get access");
     }
   }, [isAuthenticated]);
   const stripe = useStripe();
   const elements = useElements();
-  const [paymentError, setPaymentError] = useState(null);
 
   const handleSubmit = async (event) => {
     event.preventDefault();
+
+    if (order.orderItems) {
+      console.log("Hari");
+      dispatch(ordersAction.createOrder(order));
+    }
 
     // Data we have to pass here.(original data)
     const deliveryDetails = {
@@ -85,10 +99,11 @@ const PaymentForm = () => {
       });
 
       if (result.error) {
-        setPaymentError(result.error.message);
+        toast.error(result.error.message);
         // Handle payment error
       } else {
         console.log("Payment was successful");
+        navigate("/users/orders");
         // Handle the success scenario
       }
     } catch (error) {
@@ -119,7 +134,6 @@ const PaymentForm = () => {
             <button type="submit" disabled={!stripe} id="paymentbtncard">
               Pay
             </button>
-            {paymentError && <p style={{ color: "red" }}>{paymentError}</p>}
           </form>
         )}
         {!isAuthenticated && (

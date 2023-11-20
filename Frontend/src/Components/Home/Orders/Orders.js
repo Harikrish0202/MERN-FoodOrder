@@ -25,7 +25,6 @@ const Order = () => {
         Header: "Order Items",
         accessor: "orderItems",
         Cell: ({ cell: { value } }) => {
-          console.log(value);
           return value;
         },
       },
