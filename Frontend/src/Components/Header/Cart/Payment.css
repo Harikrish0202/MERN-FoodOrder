@@ -1,3 +1,4 @@
+
 #container-pay{
   color: white;
   display: flex;
@@ -18,7 +19,34 @@ h2{
   font-size: 16px;
   width: 100%;
 }
-.StripeElement{
+
+
+.heading {
+  padding: 10px;
+}
+
+#container-pay {
+  color: white;
+  display: flex;
+  justify-content: center;
+}
+#FormElement {
+  margin-top: 30px;
+  background-color: rgb(65, 60, 60, 0.5);
+  box-shadow: 5px 5px 5px 5px #888888;
+  width: 400px;
+}
+h2 {
+  text-align: center;
+}
+#card-number-element,
+#card-expiry-element,
+#card-cvc-element {
+  padding: 5px 10px;
+  font-size: 20px;
+  width: 100%;
+}
+.StripeElement {
   border: 2px solid black;
   padding: 10px;
   border-radius: 5px;

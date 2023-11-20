@@ -6,6 +6,7 @@ export const addItem = (id) => async (dispatch) => {
     //Get the fooditem details from backend according to which id you have sent by dispatch
     const { data } = await axios.get(`/api/v1/eats/foods/${id}`);
     const foodItem = data.data;
+    console.log(foodItem);
     //here i am sending the fooditem to removing item
     dispatch(
       cartActions.addItemToCart({
@@ -47,5 +48,13 @@ export const deleteItem = (id) => async (dispatch) => {
     //if any error is there it will catch the error and send to my reducer
   } catch (error) {
     dispatch(cartActions.error("Items Doesn't Removed"));
+  }
+};
+
+export const saveDeliveryInfo = (deliveryData) => async (dispatch) => {
+  try {
+    dispatch(cartActions.deliveryInfo(deliveryData));
+  } catch (error) {
+    dispatch(cartActions.error("Delivery Info Does not Stored"));
   }
 };

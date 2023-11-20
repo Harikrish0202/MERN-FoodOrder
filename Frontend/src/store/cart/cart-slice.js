@@ -2,10 +2,16 @@ import { createSlice } from "@reduxjs/toolkit";
 
 const cartItems = JSON.parse(localStorage.getItem("cartItems")) || [];
 const totalQuantity = JSON.parse(localStorage.getItem("totalQuantity")) || [0];
+// const deliveryInfo = JSON.parse(localStorage.getItem("deliveryInfo")) || {};
 
 const cartSlice = createSlice({
   name: "cart",
-  initialState: { items: cartItems, totalQuantity, error: null },
+  initialState: {
+    items: cartItems,
+    totalQuantity,
+    deliveryInfo: {},
+    error: null,
+  },
   reducers: {
     addItemToCart(state, action) {
       //new item
@@ -65,6 +71,11 @@ const cartSlice = createSlice({
         state.items = state.items.filter((item) => item.id !== id);
         localStorage.setItem("cartItems", JSON.stringify(state.items));
       }
+    },
+
+    deliveryInfo(state, action) {
+      state.deliveryInfo = action.payload;
+      // localStorage.setItem("deliveryInfo", JSON.stringify(state.deliveryInfo));
     },
     //for get the error
     error(state, action) {

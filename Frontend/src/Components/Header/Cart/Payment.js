@@ -6,16 +6,16 @@ import {
   CardNumberElement,
   CardExpiryElement,
   CardCvcElement,
-  CardElement,
   useStripe,
   useElements,
 } from "@stripe/react-stripe-js";
 
 import "./Payment.css";
+import { useNavigate } from "react-router-dom";
 
-const PaymentForm = ({ deliveryDetails, totalAmount, fooditems }) => {
+const PaymentForm = () => {
   const { isAuthenticated } = useSelector((state) => state.users);
-
+  const navigate = useNavigate();
   useEffect(() => {
     if (!isAuthenticated) {
       toast.warning("You have not logged in yet. Please login to get access");
@@ -23,7 +23,6 @@ const PaymentForm = ({ deliveryDetails, totalAmount, fooditems }) => {
   }, [isAuthenticated]);
   const stripe = useStripe();
   const elements = useElements();
-  const [paymentError, setPaymentError] = useState(null);
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -86,10 +85,11 @@ const PaymentForm = ({ deliveryDetails, totalAmount, fooditems }) => {
       });
 
       if (result.error) {
-        setPaymentError(result.error.message);
+        toast.error(result.error.message);
         // Handle payment error
       } else {
         console.log("Payment was successful");
+        navigate("/users/orders");
         // Handle the success scenario
       }
     } catch (error) {
@@ -101,26 +101,27 @@ const PaymentForm = ({ deliveryDetails, totalAmount, fooditems }) => {
   return (
     <>
       <div id="container-pay">
-        <form onSubmit={handleSubmit} id="FormElement">
-          <h2>Enter Your Card Details</h2>
-          <br></br>
-          <div id="card-number-element">
-            <label>Card Number</label>
-            <CardNumberElement />
-          </div>
-          <div id="card-expiry-element">
-            <label>Card Expiry</label>
-            <CardExpiryElement />
-          </div>
-          <div id="card-cvc-element">
-            <label>Card CVC</label>
-            <CardCvcElement />
-          </div>
-          <button type="submit" disabled={!stripe} id="paymentbtncard">
-            Pay
-          </button>
-          {paymentError && <p style={{ color: "red" }}>{paymentError}</p>}
-        </form>
+        {isAuthenticated && (
+          <form onSubmit={handleSubmit} id="FormElement">
+            <h2 className="heading">Enter Your Card Details</h2>
+
+            <div id="card-number-element">
+              <label>Card Number</label>
+              <CardNumberElement />
+            </div>
+            <div id="card-expiry-element">
+              <label>Card Expiry</label>
+              <CardExpiryElement />
+            </div>
+            <div id="card-cvc-element">
+              <label>Card CVC</label>
+              <CardCvcElement />
+            </div>
+            <button type="submit" disabled={!stripe} id="paymentbtncard">
+              Pay
+            </button>
+          </form>
+        )}
         {!isAuthenticated && (
           <h4 className="not_login">
             You have not Login yet .Please Login to Get Access

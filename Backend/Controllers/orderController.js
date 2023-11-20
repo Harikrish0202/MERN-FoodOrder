@@ -8,7 +8,8 @@ exports.getCheckout = async (req, res, next) => {
   const { amount, currency, paymentMethodTypes, deliveryDetails, fooditems } =
     req.body;
 
-  console.log("Received amount:", amount, "Currency:", currency);
+  // console.log(deliveryDetails);
+  // console.log("Received amount:", amount, "Currency:", currency);
   try {
     const paymentIntent = await stripe.paymentIntents.create({
       amount: amount * 100, // Convert amount to paise(Because Stripe expects amount to be in smallest currency unit(inr->paise))
@@ -33,12 +34,14 @@ exports.getCheckout = async (req, res, next) => {
     //   itemsPrice: amount,
     // });
 
-    res.json({
-      clientSecret: paymentIntent.client_secret,
-      message: "Payment intent created successfully.",
-      // orderId: order._id,
-      // message: "Payment intent and order created successfully",
-    });
+    // res.json({
+    //   clientSecret: paymentIntent.client_secret,
+    //   message: "Payment intent created successfully.",
+    //   // orderId: order._id,
+    //   // message: "Payment intent and order created successfully",
+    // });
+
+    res.json({ clientSecret: paymentIntent.client_secret });
   } catch (error) {
     res.status(500).json({ error: error.message });
     console.log(error);
@@ -83,9 +86,7 @@ exports.createOrder = async (req, res, next) => {
 
     res.status(201).json({
       status: "success",
-      data: {
-        order: newOrder,
-      },
+      newOrder,
     });
   } catch (error) {
     console.error(error);
@@ -94,4 +95,15 @@ exports.createOrder = async (req, res, next) => {
 };
 
 //For getting all Order details.
-exports.getAllOrders = async (req, res, next) => {};
+exports.getAllOrders = async (req, res, next) => {
+  try {
+    const result = await Order.find();
+    res.status(200).json({
+      status: "success",
+      result,
+    });
+  } catch (error) {
+    console.log(error);
+    res.status(400).json({ error: "Order Details not found" });
+  }
+};

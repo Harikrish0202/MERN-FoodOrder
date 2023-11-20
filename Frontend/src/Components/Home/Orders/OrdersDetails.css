@@ -1,0 +1,36 @@
+.main_container {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.orderdetails_container {
+  padding: 1%;
+  width: 75%;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  height: auto;
+  background-color: rgba(65, 60, 60, 0.5);
+  box-shadow: 2px 2px 5px 6px #888888;
+}
+
+.info {
+  padding-left: 2%;
+}
+
+.delivery {
+  padding: 5px;
+  border-radius: 5px;
+  background-color: #be521f;
+  display: inline-block;
+}
+
+.paid {
+  color: rgb(9, 186, 9);
+}
+
+.status {
+  color: rgb(247, 6, 6);
+}

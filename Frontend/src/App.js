@@ -23,6 +23,7 @@ import UpdateProfilePage from "./Pages/UpdateProfilePage";
 import DeliveryPage from "./Pages/DeliveryPage";
 import OrderDetailsPage from "./Pages/OrderDetailsPage";
 import StripePage from "./Stripe";
+
 import Error from "./Pages/Error";
 import MenuPage from "./Pages/MenuPage";
 import { Flip, ToastContainer } from "react-toastify";
@@ -34,6 +35,9 @@ import CartPage from "./Pages/CartPage";
 
 import OrderPage from "./Pages/OrderPage";
 
+import DeliveryDetailsPage from "./Pages/DeliveryDetailsPage";
+import OrdersDetails from "./Components/Home/Orders/OrdersDetails";
+
 const App = () => {
   const dispatch = useDispatch();
   useEffect(() => {
@@ -43,6 +47,7 @@ const App = () => {
   const stripePromise = loadStripe(
     "pk_test_51Nu7qvSALNch1MIs31dRgF7ApJkXUZwhnpGe3oQOmeBdHuzk70OMnHudvbs4KW5rXMdXpSlUZUQdwsJFBJYO3KpM005OTQNsPr"
   );
+
   const baseRouteElement = (
     <Route path="*" element={<Mainpage />} errorElement={<Error />}>
       <Route id="home" index element={<HomePage />} />
@@ -60,6 +65,12 @@ const App = () => {
       />
       <Route id="login" path="users/login" element={<LoginPage />} exact />
       <Route id="signup" path="users/signup" element={<SignupPage />} exact />
+      <Route id="delivery" path="delivery" element={<DeliveryPage />} exact />
+      <Route
+        id="deliverydetails"
+        path="delivery/deliverydetails"
+        element={<DeliveryDetailsPage />}
+      />
       <Route
         id="forgotPassword"
         path="users/forgotPassword"
@@ -77,6 +88,11 @@ const App = () => {
         exact
       />
       <Route id="orders" path="users/orders" element={<OrderPage />} exact />
+      <Route
+        id="orderdetails"
+        path="orders/ordersdetails"
+        element={<OrdersDetails />}
+      />
 
       <Route
         id="userProfile"
