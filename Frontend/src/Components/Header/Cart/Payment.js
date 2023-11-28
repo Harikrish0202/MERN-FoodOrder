@@ -12,28 +12,23 @@ import {
 
 import "./Payment.css";
 import { useNavigate } from "react-router-dom";
-<<<<<<< HEAD
-import { ordersAction } from "../../../store/orders/order-slice";
+import { createOrders } from "../../../store/orders/order-action";
+import Spinner from "../../Home/Loader";
 
 const PaymentForm = () => {
   const dispatch = useDispatch();
-  const { items } = useSelector((state) => state.cart);
-  const { orders } = useSelector((state) => state.orders);
-  console.log(orders);
+  const { items, deliveryInfo, paymentInfo } = useSelector(
+    (state) => state.cart
+  );
 
-  const { isAuthenticated } = useSelector((state) => state.users);
-  const order = {
-    orderItems: items,
-  };
-=======
+  const { isAuthenticated, user, loading } = useSelector(
+    (state) => state.users
+  );
 
-const PaymentForm = () => {
-  const { isAuthenticated } = useSelector((state) => state.users);
->>>>>>> 099142ca4788b62ae381ad6e54aad019349fda8e
   const navigate = useNavigate();
   useEffect(() => {
     if (!isAuthenticated) {
-      toast.warning("You have not logged yet. Please login to get access");
+      toast.warning("You have not loged yet. Please login to get access");
     }
   }, [isAuthenticated]);
   const stripe = useStripe();
@@ -41,22 +36,13 @@ const PaymentForm = () => {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-
-    if (order.orderItems) {
-      console.log("Hari");
-      dispatch(ordersAction.createOrder(order));
-    }
+    document.querySelector("#paymentbtncard").disabled = true;
 
     // Data we have to pass here.(original data)
-    const deliveryDetails = {
-      name: "Selvam",
-      address: "123 Main St",
-      city: "Exampleville",
-      postalCode: "12345",
-    };
-    const fooditems = {
-      name: "cappunico",
-    };
+    const deliveryDetails = deliveryInfo;
+
+    const fooditems = "fooditems";
+
     const totalAmount = 120;
     // upto this.
 
@@ -97,19 +83,38 @@ const PaymentForm = () => {
         shipping: {
           name: deliveryDetails.name,
           address: {
-            line1: deliveryDetails.address,
+            line1: deliveryDetails.street,
             city: deliveryDetails.city,
-            postal_code: deliveryDetails.postalCode,
+            postal_code: deliveryDetails.pinCode,
           },
         },
       });
+      const order = {
+        orderItems: items,
+        deliveryInfo: {
+          name: deliveryInfo.name,
+          address: deliveryInfo.street,
+          city: deliveryInfo.city,
+          phoneno: deliveryInfo.phone,
+          pincode: deliveryInfo.pincode,
+          country: deliveryInfo.country,
+        },
+        user: user._id,
+        restaurant: items.map((item) => item.restaurantId),
+        paymentInfo,
+        paymentId: result.paymentIntent.id,
+        orderStatus: result.paymentIntent.status,
+      };
+
+      console.log(order);
 
       if (result.error) {
         toast.error(result.error.message);
         // Handle payment error
       } else {
         console.log("Payment was successful");
-        navigate("/users/orders");
+        dispatch(createOrders(order));
+        navigate("/confirmorder");
         // Handle the success scenario
       }
     } catch (error) {
@@ -120,11 +125,17 @@ const PaymentForm = () => {
 
   return (
     <>
-      <div id="container-pay">
-        {isAuthenticated && (
+      {loading && <Spinner message="Loading" />}
+      {items.length === 0 && !loading && (
+        <h3 style={{ textAlign: "center", color: "white" }}>
+          You can't make payment!.Because your cart is Empty
+        </h3>
+      )}
+
+      {isAuthenticated && items.length > 0 && (
+        <div id="container-pay">
           <form onSubmit={handleSubmit} id="FormElement">
             <h2 className="heading">Enter Your Card Details</h2>
-
             <div id="card-number-element">
               <label>Card Number</label>
               <CardNumberElement />
@@ -141,13 +152,13 @@ const PaymentForm = () => {
               Pay
             </button>
           </form>
-        )}
-        {!isAuthenticated && (
-          <h4 className="not_login">
-            You have not Login yet .Please Login to Get Access
-          </h4>
-        )}
-      </div>
+        </div>
+      )}
+      {!isAuthenticated && !loading && (
+        <h4 className="not_login">
+          You have not Login yet .Please Login to Get Access
+        </h4>
+      )}
     </>
   );
 };

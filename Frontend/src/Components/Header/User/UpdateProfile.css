@@ -1,34 +1,38 @@
-#container3{
-    height: 350px;
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center; 
-    margin:10px;
-    margin-top:60px;
+#container3 {
+  height: 350px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin: 10px;
+  margin-top: 140px;
 }
 
-#updateprofileform{
-    color: white;
-    background-color: rgb(65, 60, 60, 0.5);
-    box-shadow: 5px 5px 5px 5px #888888;
-    width: 400px;
-    padding: 15px;
+#updateprofileform {
+  color: white;
+  background-color: rgb(65, 60, 60, 0.5);
+  box-shadow: 5px 5px 5px 5px #888888;
+  width: 400px;
+  padding: 15px;
 }
 
-#UpdateEmail,#UpdateName,#UpdateAvatar{
-    margin: 10px 0px 10px 0px;
-    width: 100%;
-    padding: 8px;
+#UpdateEmail,
+#UpdateName,
+#UpdatePhoneNo,
+#UpdatePassword,
+#ConfirmUpdatePassword {
+  margin: 10px 0px 10px 0px;
+  width: 100%;
+  padding: 8px;
 }
-#updatebtn{
-    width: 100%;
-    margin: 10px 0px 15px 0px;
-    padding: 5px;
-    border-radius: 10px;
-    background-color: #be521f;
-    border: none;
-    color: white;    
-    align-items: center;
+#updatebtn {
+  width: 100%;
+  margin: 10px 0px 15px 0px;
+  padding: 5px;
+  border-radius: 10px;
+  background-color: #be521f;
+  border: none;
+  color: white;
+  align-items: center;
 }

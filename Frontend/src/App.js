@@ -4,12 +4,7 @@ import {
   Route,
   RouterProvider,
 } from "react-router-dom";
-import {
-  Elements,
-  CardElement,
-  useStripe,
-  useElements,
-} from "@stripe/react-stripe-js";
+import { Elements } from "@stripe/react-stripe-js";
 import { loadStripe } from "@stripe/stripe-js";
 
 import Mainpage from "./Pages/Mainpage";
@@ -21,8 +16,6 @@ import PaymentPage from "./Pages/PaymentPage";
 import UserProfilePage from "./Pages/UserProfilePage";
 import UpdateProfilePage from "./Pages/UpdateProfilePage";
 import DeliveryPage from "./Pages/DeliveryPage";
-import OrderDetailsPage from "./Pages/OrderDetailsPage";
-import StripePage from "./Stripe";
 
 import Error from "./Pages/Error";
 import MenuPage from "./Pages/MenuPage";
@@ -37,6 +30,7 @@ import OrderPage from "./Pages/OrderPage";
 
 import DeliveryDetailsPage from "./Pages/DeliveryDetailsPage";
 import OrdersDetails from "./Components/Home/Orders/OrdersDetails";
+import OrderSuccess from "./Components/Header/Cart/OrderSuccess";
 
 const App = () => {
   const dispatch = useDispatch();
@@ -71,6 +65,7 @@ const App = () => {
         path="delivery/deliverydetails"
         element={<DeliveryDetailsPage />}
       />
+      <Route id="ordersuccess" path="confirmorder" element={<OrderSuccess />} />
       <Route
         id="forgotPassword"
         path="users/forgotPassword"
@@ -90,7 +85,7 @@ const App = () => {
       <Route id="orders" path="users/orders" element={<OrderPage />} exact />
       <Route
         id="orderdetails"
-        path="orders/ordersdetails"
+        path="orders/ordersdetails/:orderid"
         element={<OrdersDetails />}
       />
 
@@ -106,9 +101,9 @@ const App = () => {
         element={<UpdateProfilePage />}
         exact
       />
+
       <Route id="cart" path="cart/cartdetails" element={<CartPage />} exact />
       <Route path="users/delivery" element={<DeliveryPage />} exact />
-      <Route path="users/orderdetails" element={<OrderDetailsPage />} exact />
 
       {/* <Route
         path="create-payment-intent"

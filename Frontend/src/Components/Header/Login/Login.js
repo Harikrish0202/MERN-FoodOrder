@@ -37,7 +37,7 @@ const Login = () => {
             aria-labelledby="navbarScrollingDropdown"
           >
             <li>
-              <Link className="dropdown-item" to="/users/updateProfile">
+              <Link className="dropdown-item" to="/users/me">
                 Profile
               </Link>
             </li>

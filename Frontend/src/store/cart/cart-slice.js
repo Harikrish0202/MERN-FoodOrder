@@ -3,6 +3,7 @@ import { createSlice } from "@reduxjs/toolkit";
 const cartItems = JSON.parse(localStorage.getItem("cartItems")) || [];
 const totalQuantity = JSON.parse(localStorage.getItem("totalQuantity")) || [0];
 const deliveryInfo = JSON.parse(localStorage.getItem("deliveryInfo")) || {};
+const paymentInfo = JSON.parse(localStorage.getItem("paymentInfo")) || {};
 
 const cartSlice = createSlice({
   name: "cart",
@@ -11,6 +12,7 @@ const cartSlice = createSlice({
     totalQuantity,
     deliveryInfo,
     error: null,
+    paymentInfo,
   },
   reducers: {
     addItemToCart(state, action) {
@@ -77,7 +79,27 @@ const cartSlice = createSlice({
       state.deliveryInfo = action.payload;
       localStorage.setItem("deliveryInfo", JSON.stringify(state.deliveryInfo));
     },
+
+    clearCarts(state, action) {
+      state.items = action.payload.items;
+      localStorage.setItem("cartItems", JSON.stringify(state.items));
+      state.paymentInfo = action.payload.payment;
+      localStorage.setItem("paymentInfo", JSON.stringify(state.paymentInfo));
+      state.deliveryInfo = action.payload.delivery;
+      localStorage.setItem("deliveryInfo", JSON.stringify(state.deliveryInfo));
+      state.totalQuantity = action.payload.total;
+      localStorage.setItem(
+        "totalQuantity",
+        JSON.stringify(state.totalQuantity)
+      );
+    },
     //for get the error
+
+    paymentInfo(state, action) {
+      state.paymentInfo = action.payload;
+      localStorage.setItem("paymentInfo", JSON.stringify(state.paymentInfo));
+    },
+
     error(state, action) {
       state.error = action.payload;
     },

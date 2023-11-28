@@ -1,7 +1,12 @@
 const mongoose = require("mongoose");
+const moment = require("moment");
 
 const orderSchema = new mongoose.Schema({
   deliveryInfo: {
+    name: {
+      type: String,
+      required: true,
+    },
     address: {
       type: String,
       required: true,
@@ -10,11 +15,11 @@ const orderSchema = new mongoose.Schema({
       type: String,
       required: true,
     },
-    phoneNo: {
+    phoneno: {
       type: String,
       required: true,
     },
-    postalCode: {
+    pincode: {
       type: String,
       required: true,
     },
@@ -23,11 +28,12 @@ const orderSchema = new mongoose.Schema({
       required: true,
     },
   },
-  restaurant: {
-    type: mongoose.Schema.Types.ObjectId,
-    required: true,
-    ref: "Restaurant",
-  },
+  restaurant: [
+    {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "Restaurant",
+    },
+  ],
   user: {
     type: mongoose.Schema.Types.ObjectId,
     required: true,
@@ -51,49 +57,41 @@ const orderSchema = new mongoose.Schema({
         type: Number,
         required: true,
       },
-      fooditem: {
-        type: mongoose.Schema.Types.ObjectId,
-        required: true,
-        ref: "FoodItem",
-      },
     },
   ],
   paymentInfo: {
     id: {
       type: String,
     },
-    status: {
+    paidAt: {
       type: String,
+      default: () => moment().format("DD-MM-YYYY"),
     },
-  },
-  paidAt: {
-    type: Date,
-  },
-
-  itemsPrice: {
-    type: Number,
-    required: true,
-    default: 0.0,
-  },
-  taxPrice: {
-    type: Number,
-    required: true,
-    default: 0.0,
-  },
-  deliveryCharge: {
-    type: Number,
-    required: true,
-    default: 0.0,
-  },
-  totalPrice: {
-    type: Number,
-    required: true,
-    default: 0.0,
-  },
-  orderStatus: {
-    type: String,
-    required: true,
-    default: "Processing",
+    itemsPrice: {
+      type: Number,
+      required: true,
+      default: 0.0,
+    },
+    taxPrice: {
+      type: Number,
+      required: true,
+      default: 0.0,
+    },
+    deliveryCharge: {
+      type: Number,
+      required: true,
+      default: 0.0,
+    },
+    totalPrice: {
+      type: Number,
+      required: true,
+      default: 0.0,
+    },
+    orderStatus: {
+      type: String,
+      required: true,
+      default: "Delivered",
+    },
   },
 });
 

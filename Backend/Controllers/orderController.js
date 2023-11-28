@@ -5,8 +5,7 @@ const stripe = require("stripe")(
 
 // For Payment.
 exports.getCheckout = async (req, res, next) => {
-  const { amount, currency, paymentMethodTypes, deliveryDetails, fooditems } =
-    req.body;
+  const { amount, currency, paymentMethodTypes, fooditems } = req.body;
 
   // console.log(deliveryDetails);
   // console.log("Received amount:", amount, "Currency:", currency);
@@ -94,16 +93,40 @@ exports.createOrder = async (req, res, next) => {
   }
 };
 
-//For getting all Order details.
-exports.getAllOrders = async (req, res, next) => {
+exports.getUserOrder = async (req, res, next) => {
   try {
-    const result = await Order.find();
+    const result = await Order.find({ user: req.user._id }).populate({
+      path: "restaurant",
+      select: "name images address",
+      options: { limit: 1 },
+    });
+
+    console.log(result);
+    res.status(200).json({
+      status: "success",
+      result,
+    });
+  } catch (err) {
+    console.log(err);
+    res.status(500).json({
+      error: "Internal server error",
+    });
+  }
+};
+
+exports.getOneOrder = async (req, res, next) => {
+  try {
+    const result = await Order.findById(req.params.orderId).populate({
+      path: "restaurant",
+      // select: "name images address",
+      options: { limit: 1 },
+    });
     res.status(200).json({
       status: "success",
       result,
     });
   } catch (error) {
     console.log(error);
-    res.status(400).json({ error: "Order Details not found" });
+    res.status(400).json({ error: "Order Detail not found" });
   }
 };
