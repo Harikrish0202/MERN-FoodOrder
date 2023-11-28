@@ -83,3 +83,5 @@ export const currentUser = () => async (dispatch) => {
     );
   }
 };
+
+export const updateUserData = () => async () => {};

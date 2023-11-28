@@ -6,11 +6,15 @@ import { toast } from "react-toastify";
 import { addItem } from "../../../store/cart/cart-action";
 import { removeItem } from "../../../store/cart/cart-action";
 import { useEffect } from "react";
+import { useParams } from "react-router-dom";
+import { cartActions } from "../../../store/cart/cart-slice";
 
 //FoodItem component
 
 const FoodItem = ({ fooditem }) => {
   const dispatch = useDispatch();
+  const { id } = useParams();
+
   //here i have created one state for appearing and disappearing Addto cart button
   const [appear, setAppear] = useState("true");
   //Duspaling the total Quantity of whatever item you have added
@@ -26,9 +30,17 @@ const FoodItem = ({ fooditem }) => {
     }
   }, [items, fooditem]);
 
-  //Fuction for disappearing button
+  //Function for disappearing button
   const disAppearButton = () => {
-    dispatch(addItem(fooditem._id));
+    const restaurant = items.find((item) => item.restaurantId !== id);
+    if (restaurant) {
+      const errormessage =
+        "Sorry at the same you can not order the food from different restaurant";
+      dispatch(cartActions.error(errormessage));
+      return toast.error(errormessage);
+    }
+
+    dispatch(addItem(fooditem._id, id));
 
     setAppear((prevState) => !prevState);
     setTotalItems((prevState) => prevState + 1);
@@ -37,7 +49,15 @@ const FoodItem = ({ fooditem }) => {
 
   //Adding item
   const addToCartHandler = () => {
-    dispatch(addItem(fooditem._id));
+    const restaurant = items.find((item) => item.restaurantId !== id);
+
+    if (restaurant) {
+      const errormessage =
+        "Sorry at the same you can not order the food from different restaurant";
+      dispatch(cartActions.error(errormessage));
+      return toast.error(errormessage);
+    }
+    dispatch(addItem(fooditem._id, id));
 
     setTotalItems((prevState) => prevState + 1);
     toast.success("Item Added");

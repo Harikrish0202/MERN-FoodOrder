@@ -11,9 +11,11 @@ Router.post(
   authController.protect,
   orderController.createOrder
 );
-
-Router.get("/getorders", orderController.getAllOrders);
-Router.get("/getorder/:orderId", orderController.getOneOrder);
 Router.get("/userorder", authController.protect, orderController.getUserOrder);
 
+// Router.get("/getorders", orderController.getAllOrders);
+Router.get("/getorder/:orderId", orderController.getOneOrder);
+// Router.get("/userorder", authController.protect, orderController.getUserOrder);
+
+// Router.get("/getorder/:orderId", orderController.getOneOrder);
 module.exports = Router;

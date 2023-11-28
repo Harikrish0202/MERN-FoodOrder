@@ -1,12 +1,11 @@
 import axios from "axios";
 import { cartActions } from "./cart-slice";
 
-export const addItem = (id) => async (dispatch) => {
+export const addItem = (id, restaurantId) => async (dispatch) => {
   try {
     //Get the fooditem details from backend according to which id you have sent by dispatch
     const { data } = await axios.get(`/api/v1/eats/foods/${id}`);
     const foodItem = data.data;
-    console.log(foodItem);
     //here i am sending the fooditem to removing item
     dispatch(
       cartActions.addItemToCart({
@@ -16,6 +15,7 @@ export const addItem = (id) => async (dispatch) => {
         price: foodItem.price,
         quantity: 1,
         totalPrice: foodItem.price,
+        restaurantId,
       })
     );
 
@@ -56,5 +56,20 @@ export const saveDeliveryInfo = (deliveryData) => async (dispatch) => {
     dispatch(cartActions.deliveryInfo(deliveryData));
   } catch (error) {
     dispatch(cartActions.error("Delivery Info Does not Stored"));
+  }
+};
+
+export const clearCart = () => async (dispatch) => {
+  try {
+    dispatch(
+      cartActions.clearCarts({
+        items: [],
+        payment: {},
+        delivery: {},
+        total: 0,
+      })
+    );
+  } catch (error) {
+    dispatch(cartActions.error("Couldn't Clear the carts"));
   }
 };

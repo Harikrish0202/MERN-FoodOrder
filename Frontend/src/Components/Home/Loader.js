@@ -9,7 +9,6 @@ function Spinner({ message }) {
       <p style={{ color: "white ", textAlign: "center", fontSize: "20px" }}>
         {message}
       </p>
-
       <div className="custom-spinner">
         <div className="spinner"></div>
       </div>

@@ -5,8 +5,7 @@ const stripe = require("stripe")(
 
 // For Payment.
 exports.getCheckout = async (req, res, next) => {
-  const { amount, currency, paymentMethodTypes, deliveryDetails, fooditems } =
-    req.body;
+  const { amount, currency, paymentMethodTypes, fooditems } = req.body;
 
   // console.log(deliveryDetails);
   // console.log("Received amount:", amount, "Currency:", currency);
@@ -57,13 +56,31 @@ exports.createOrder = async (req, res, next) => {
         error: "You are not logged in! Please login to get access for orders.",
       });
     }
-    const { deliveryInfo, restaurant, orderItems } = req.body;
+    const {
+      deliveryInfo,
+      restaurant,
+      orderItems,
+      paymentInfo,
+      paidAt,
+      itemsPrice,
+      taxPrice,
+      deliveryCharge,
+      totalPrice,
+      orderStatus,
+    } = req.body;
 
     const newOrder = await Order.create({
       deliveryInfo,
       restaurant,
       user: req.user._id,
       orderItems,
+      paymentInfo,
+      paidAt,
+      itemsPrice,
+      taxPrice,
+      deliveryCharge,
+      totalPrice,
+      orderStatus,
     });
 
     res.status(201).json({
@@ -76,52 +93,15 @@ exports.createOrder = async (req, res, next) => {
   }
 };
 
-//For getting all Order details.
-exports.getAllOrders = async (req, res, next) => {
-  try {
-    const result = await Order.find().populate({
-      path: "restaurant",
-      select: "name images",
-      options: { limit: 1 },
-    });
-    res.status(200).json({
-      status: "success",
-      result,
-    });
-  } catch (error) {
-    console.log(error);
-    res.status(400).json({ error: "Order Details not found" });
-  }
-};
-
-exports.getOneOrder = async (req, res, next) => {
-  try {
-    const result = await Order.findById(req.params.orderId).populate({
-      path: "restaurant",
-      select: "name images",
-      options: { limit: 1 },
-    });
-    res.status(200).json({
-      status: "success",
-      result,
-    });
-  } catch (error) {
-    console.log(error);
-    res.status(400).json({ error: "Order Detail not found" });
-  }
-};
-
 exports.getUserOrder = async (req, res, next) => {
   try {
     const result = await Order.find({ user: req.user._id }).populate({
       path: "restaurant",
-      select: "name images",
+      select: "name images address",
+      options: { limit: 1 },
     });
 
-    if (result.length === 0) {
-      return res.status(404).json({ error: "Order details not found" });
-    }
-
+    console.log(result);
     res.status(200).json({
       status: "success",
       result,
@@ -131,5 +111,22 @@ exports.getUserOrder = async (req, res, next) => {
     res.status(500).json({
       error: "Internal server error",
     });
+  }
+};
+
+exports.getOneOrder = async (req, res, next) => {
+  try {
+    const result = await Order.findById(req.params.orderId).populate({
+      path: "restaurant",
+      // select: "name images address",
+      options: { limit: 1 },
+    });
+    res.status(200).json({
+      status: "success",
+      result,
+    });
+  } catch (error) {
+    console.log(error);
+    res.status(400).json({ error: "Order Detail not found" });
   }
 };

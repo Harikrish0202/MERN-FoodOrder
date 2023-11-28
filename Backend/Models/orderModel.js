@@ -3,6 +3,10 @@ const moment = require("moment");
 
 const orderSchema = new mongoose.Schema({
   deliveryInfo: {
+    name: {
+      type: String,
+      required: true,
+    },
     address: {
       type: String,
       required: true,
@@ -11,11 +15,11 @@ const orderSchema = new mongoose.Schema({
       type: String,
       required: true,
     },
-    phoneNo: {
+    phoneno: {
       type: String,
       required: true,
     },
-    postalCode: {
+    pincode: {
       type: String,
       required: true,
     },
@@ -27,7 +31,6 @@ const orderSchema = new mongoose.Schema({
   restaurant: [
     {
       type: mongoose.Schema.Types.ObjectId,
-      required: true,
       ref: "Restaurant",
     },
   ],
@@ -54,17 +57,10 @@ const orderSchema = new mongoose.Schema({
         type: Number,
         required: true,
       },
-      // fooditem: {
-      //   type: mongoose.Schema.Types.ObjectId,
-      //   required: true,
-      // },
     },
   ],
   paymentInfo: {
     id: {
-      type: String,
-    },
-    status: {
       type: String,
     },
     paidAt: {
@@ -94,7 +90,7 @@ const orderSchema = new mongoose.Schema({
     orderStatus: {
       type: String,
       required: true,
-      default: "Processing",
+      default: "Delivered",
     },
   },
 });
