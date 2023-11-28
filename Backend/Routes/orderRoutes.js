@@ -13,4 +13,7 @@ Router.post(
 );
 
 Router.get("/getorders", orderController.getAllOrders);
+Router.get("/getorder/:orderId", orderController.getOneOrder);
+Router.get("/userorder", authController.protect, orderController.getUserOrder);
+
 module.exports = Router;

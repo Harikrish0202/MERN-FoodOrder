@@ -29,40 +29,14 @@ exports.oneuser = async (req, res, next) => {
   }
 };
 
-exports.updateUser = async (req, res, next) => {
+exports.updateMe = (req, res, next) => {
   try {
-    const uptUser = await User.findByIdAndUpdate(req.params.userId, req.body, {
-      new: true,
-      runValidators: true,
-    });
-
-    if (!uptUser) throw new Error("No User found");
-
-    res.status(200).json({
-      success: true,
-      data: uptUser,
-    });
-  } catch (err) {
-    res.status(404).json({
-      success: true,
-      data: err.message,
-    });
-  }
-};
-
-exports.deleteUser = async (req, res, next) => {
-  try {
-    const dltUser = await User.findByIdAndRemove(req.params.foodId);
-
-    if (!dltUser) throw new Error("No User Found");
-
-    res.status(204).json({
-      success: true,
-    });
-  } catch (err) {
-    res.status(404).json({
-      success: true,
-      data: err.message,
+    if (req.body.password || req.body.passwordConfirm) {
+      throw new Error("This is not route for update Passowrd");
+    }
+  } catch (error) {
+    res.status(400).json({
+      error: error.message,
     });
   }
 };

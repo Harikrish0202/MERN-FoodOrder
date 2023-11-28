@@ -74,6 +74,6 @@ restaurantSchema.pre("save", function (next) {
   next();
 });
 
-const Restaurant = mongoose.model("restaurant", restaurantSchema);
+const Restaurant = mongoose.model("Restaurant", restaurantSchema);
 
 module.exports = Restaurant;

@@ -1,4 +1,5 @@
 const mongoose = require("mongoose");
+const moment = require("moment");
 
 const orderSchema = new mongoose.Schema({
   deliveryInfo: {
@@ -23,11 +24,13 @@ const orderSchema = new mongoose.Schema({
       required: true,
     },
   },
-  restaurant: {
-    type: mongoose.Schema.Types.ObjectId,
-    required: true,
-    ref: "Restaurant",
-  },
+  restaurant: [
+    {
+      type: mongoose.Schema.Types.ObjectId,
+      required: true,
+      ref: "Restaurant",
+    },
+  ],
   user: {
     type: mongoose.Schema.Types.ObjectId,
     required: true,
@@ -51,11 +54,10 @@ const orderSchema = new mongoose.Schema({
         type: Number,
         required: true,
       },
-      fooditem: {
-        type: mongoose.Schema.Types.ObjectId,
-        required: true,
-        ref: "FoodItem",
-      },
+      // fooditem: {
+      //   type: mongoose.Schema.Types.ObjectId,
+      //   required: true,
+      // },
     },
   ],
   paymentInfo: {
@@ -65,35 +67,35 @@ const orderSchema = new mongoose.Schema({
     status: {
       type: String,
     },
-  },
-  paidAt: {
-    type: Date,
-  },
-
-  itemsPrice: {
-    type: Number,
-    required: true,
-    default: 0.0,
-  },
-  taxPrice: {
-    type: Number,
-    required: true,
-    default: 0.0,
-  },
-  deliveryCharge: {
-    type: Number,
-    required: true,
-    default: 0.0,
-  },
-  totalPrice: {
-    type: Number,
-    required: true,
-    default: 0.0,
-  },
-  orderStatus: {
-    type: String,
-    required: true,
-    default: "Processing",
+    paidAt: {
+      type: String,
+      default: () => moment().format("DD-MM-YYYY"),
+    },
+    itemsPrice: {
+      type: Number,
+      required: true,
+      default: 0.0,
+    },
+    taxPrice: {
+      type: Number,
+      required: true,
+      default: 0.0,
+    },
+    deliveryCharge: {
+      type: Number,
+      required: true,
+      default: 0.0,
+    },
+    totalPrice: {
+      type: Number,
+      required: true,
+      default: 0.0,
+    },
+    orderStatus: {
+      type: String,
+      required: true,
+      default: "Processing",
+    },
   },
 });
 

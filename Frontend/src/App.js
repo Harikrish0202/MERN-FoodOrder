@@ -17,12 +17,12 @@ import LoginPage from "./Pages/LoginPage";
 import HomePage from "./Pages/HomePage";
 import SignupPage from "./Pages/SignupPage";
 import ForgotPasswordPage from "./Pages/ForgotPasswordPage";
+import ResetPasswordPage from "./Pages/ResetPasswordPage";
 import PaymentPage from "./Pages/PaymentPage";
 import UserProfilePage from "./Pages/UserProfilePage";
 import UpdateProfilePage from "./Pages/UpdateProfilePage";
 import DeliveryPage from "./Pages/DeliveryPage";
 import OrderDetailsPage from "./Pages/OrderDetailsPage";
-import StripePage from "./Stripe";
 
 import Error from "./Pages/Error";
 import MenuPage from "./Pages/MenuPage";
@@ -75,6 +75,12 @@ const App = () => {
         id="forgotPassword"
         path="users/forgotPassword"
         element={<ForgotPasswordPage />}
+        exact
+      />
+      <Route
+        id="resetPassword"
+        path="users/resetPassword"
+        element={<ResetPasswordPage />}
         exact
       />
       <Route
